@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="devchallenges.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/" />
+
+  <title>devChallenges.io - 404 Not Found</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@700&family=Montserrat:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      border: 0;
+      outline: none;
+      color: inherit;
+      vertical-align: baseline;
+    }
+
+    html {
+      font-size: 24px;
+    }
+
+    html,
+    body {
+      min-height: 100vh;
+      line-height: 1;
+    }
+
+    body {
+      padding: 24px;
+      padding-top: 40px;
+      max-width: 1286px;
+      margin-inline: auto;
+      font-family: "Space Mono", sans-serif;
+      font-weight: 400;
+      line-height: 150%;
+      letter-spacing: -0.035em;
+    }
+
+    button {
+      padding: 24px 43px;
+      background: #333;
+      color: #FFF;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 150%;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+    }
+
+    .flex,
+    .flex-column {
+      display: flex;
+    }
+
+    .flex.x-center {
+      justify-content: center;
+    }
+
+    .flex-column {
+      flex-direction: column;
+    }
+
+    .flex-column.x-start {
+      align-items: flex-start;
+    }
+
+    .flex-column.x-center {
+      align-items: center;
+    }
+
+    .flex-column.y-space-between {
+      justify-content: space-between;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .error {
+      margin-bottom: 64px;
+      font-family: Inconsolata, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 100%;
+      letter-spacing: -0.08em;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(586px, 100%), 1fr));
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero img {
+      width: 100%;
+      max-width: 540px;
+    }
+
+    .hero h1 {
+      margin-bottom: 36px;
+      font-size: 64px;
+      line-height: 150%;
+      letter-spacing: -0.035em;
+    }
+
+    .hero p {
+      margin-bottom: 64px;
+      max-width: 381px;
+    }
+
+    .attribution {
+      font-family: Monserat, sans-serif;
+      font-size: 14px;
+      color: #BDBDBD;
+    }
+
+    .attribution a {
+      font-weight: 700;
+    }
+
+    @media screen and (max-width: 1200px) {
+      html {
+        font-size: 18px;
+      }
+
+      body {
+        padding: 24px;
+        padding-top: 20px;
+      }
+
+      .error {
+        margin-bottom: 64px;
+      }
+
+      .hero img {
+        margin-bottom: 60px;
+        padding: 0 20px;
+      }
+
+      .hero h1 {
+        margin-bottom: 30px;
+        font-size: 48px;
+      }
+
+      .hero p {
+        margin-bottom: 66px;
+      }
+
+      button {
+        margin-bottom: 114px;
+      }
+    }
+  </style>
+</head>
+<body class="flex-column y-space-between">
+  <div class="error">404 NOT FOUND</div>
+  <div class="hero">
+    <img src="./Scarecrow.png" alt="Scarecrow">
+    <div class="flex-column x-start">
+      <h1>I have bad news for you</h1>
+      <p>The page you are looking for might be removed or is temporarily unavailable</p>
+      <button>Back to Homepage</button>
+    </div>
+  </div>
+  <p class="attribution text-center">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</p>
+</body>
+</html>
