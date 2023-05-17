@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+  <title>devChallenges.io - My team page</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=PT+Serif:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      border: 0;
+      outline: none;
+      color: inherit;
+      vertical-align: baseline;
+    }
+
+    html,
+    body {
+      min-height: 100vh;
+      line-height: 1;
+    }
+
+    body {
+      padding: 24px;
+      padding-top: 110px;
+      max-width: 975px;
+      margin-inline: auto;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.6875rem;
+    }
+
+    h3 {
+      font-family: 'PT Serif', serif;
+      font-size: 2rem;
+      line-height: 3rem;
+      letter-spacing: -0.045em;
+    }
+
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 96px;
+      row-gap: 38px;
+    }
+
+    .who-we-are {
+      display: flex;
+      flex-direction: column;
+      max-width: 439px;
+    }
+
+    .header,
+    .who-we-are {
+      gap: 10px;
+    }
+
+    .who-we-are > p:first-child {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: clamp(25px, 25px, 67px);
+      row-gap: 27px;
+      place-items: start;
+    }
+
+    .card {
+      display: grid;
+      grid-template:
+        'image  job'
+        'name   job';
+      row-gap: 15px;
+      column-gap: 10px;
+      place-content: start;
+    }
+
+    .card > img {
+      grid-area: image;
+      width: 100%;
+      min-width: 138px;
+      max-width: 238px;
+    }
+
+    .card__name {
+      grid-area: name;
+      font-weight: bold;
+    }
+
+    .card__job {
+      grid-area: job;
+      font-family: 'PT Serif', serif;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      text-transform: uppercase;
+      writing-mode: vertical-lr;
+    }
+
+    .attribution {
+      margin-top: 115px;
+      font-family: 'Montserrat', serif;
+      font-size: 0.875rem;
+      color: #A9A9A9;
+      text-align: center;
+    }
+
+    .attribution a {
+      font-weight: bold;
+    }
+
+    @media (min-width: 576px) {
+      .team > .card:nth-child(3n + 2) {
+        margin-top: 100px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      body {
+        padding: 71px 12px 24px 12px;
+        font-size: 0.875rem;
+        line-height: 1.3125rem;
+      }
+
+      .header {
+        margin-bottom: 38px;
+      }
+
+      .who-are-we p:first-child {
+        font-size: 1.125rem;
+        line-height: 1.6875rem;
+      }
+
+      .team {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 16px;
+      }
+
+      .team > .card:nth-child(even) {
+        margin-top: 50px;
+      }
+
+      .card {
+        column-gap: 6.28px;
+        row-gap: 10px;
+      }
+
+      .card__job {
+        font-size: 0.625rem;
+        line-height: 0.8125rem;
+      }
+
+      .attribution {
+        margin-top: 134px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h3>The creative crew</h3>
+    <div class="who-we-are">
+      <p>Who we are</p>
+      <p>We are team of creatively diverse.  driven.  innovative individuals working in various locations from the world.</p>
+    </div>
+  </div>
+  <div class="team">
+    <div class="card">
+      <img src="./photo1.png" alt="Bill Mahoney - Product owner">
+      <p class="card__name">Bill Mahoney</p>
+      <p class="card__job">Product owner</p>
+    </div>
+    <div class="card">
+      <img src="./photo2.png" alt="Saba Cabrera - Art director">
+      <p class="card__name">Saba Cabrera</p>
+      <p class="card__job">Art director</p>
+    </div>
+    <div class="card">
+      <img src="./photo3.png" alt="Shae Le - Tech Lead">
+      <p class="card__name">Shae Le</p>
+      <p class="card__job">Tech Lead</p>
+    </div>
+    <div class="card">
+      <img src="./photo4.png" alt="Skylah Lu - UX Designer">
+      <p class="card__name">Skylah Lu</p>
+      <p class="card__job">UX Designer</p>
+    </div>
+    <div class="card">
+      <img src="./photo5.png" alt="Griff Richards - Developer">
+      <p class="card__name">Griff Richards</p>
+      <p class="card__job">Developer</p>
+    </div>
+    <div class="card">
+      <img src="./photo6.png" alt="Stan John - Developer">
+      <p class="card__name">Stan John</p>
+      <p class="card__job">Developer</p>
+    </div>
+  </div>
+  <p class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</p>
+</body>
+</html>
