@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+
+  <title>devChallenges - Interior Consultant</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200&family=Lora:wght@500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    :root {
+      font-size: 6.25%;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      border: 0;
+      color: inherit;
+      vertical-align: baseline;
+    }
+
+    html,
+    body {
+      min-height: 100vh;
+      line-height: 1;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      padding: 46px 76px 24px 76px;
+      background: #181719;
+      font-family: Montserrat, sans-serif;
+      font-size: 16rem;
+      font-weight: 500;
+      color: white;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 170px;
+    }
+
+    #menu {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand {
+      padding: 8px;
+      font-family: 'Crimson Pro', serif;
+      font-weight: 200;
+      font-size: 14rem;
+      border: 1px solid white;
+      text-transform: uppercase;
+    }
+
+    .top-nav {
+      display: flex;
+      gap: 86px;
+    }
+
+    .top-nav a {
+      display: inline-block;
+      position: relative;
+      padding-bottom: 8px;
+      font-size: 18rem;
+      line-height: 22rem;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    .top-nav a::after {
+      content: attr(data-text);
+      display: block;
+      font-weight: bold;
+      height: 0;
+      visibility: hidden;
+    }
+
+    .top-nav a:target {
+      font-weight: bold;
+    }
+
+    .top-nav a:target::before {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: white;
+    }
+
+    .menu__icon,
+    .menu__close {
+      display: none;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero__text {
+      max-width: 410px;
+    }
+
+    .hero__text h1 {
+      margin-bottom: 40px;
+      font-family: Lora, serif;
+      font-weight: 500;
+      font-size: 48rem;
+      line-height: 61rem;
+    }
+
+    .hero__text p {
+      margin-bottom: 48px;
+      font-size: 24rem;
+      line-height: 29rem;
+      font-weight: 400;
+    }
+
+    .hero__text a {
+      display: flex;
+      align-items: center;
+      column-gap: 14px;
+      font-size: 18rem;
+      line-height: 22rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .hero__image {
+      position: relative;
+    }
+
+    .hero__image > img {
+      width: 100%;
+      max-width: 737px;
+    }
+
+    .designer {
+      position: absolute;
+      bottom: -105px;
+      right: 32px;
+      display: grid;
+      grid-template:
+        "image name"
+        "image job"
+        "content content" / auto 1fr;
+      align-items: center;
+      max-width: 410px;
+      padding: 26px;
+      column-gap: 20px;
+      background: #181719;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .designer__image {
+      grid-area: image;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .designer__name {
+      grid-area: name;
+      font-size: 14rem;
+      line-height: 17rem;
+    }
+
+    .designer__job {
+      grid-area: job;
+      color: #828282;
+      font-size: 12rem;
+      line-height: 15rem;
+    }
+
+    .designer__content {
+      grid-area: content;
+      margin-top: 20px;
+      max-width: 287px;
+      font-family: Lora, serif;
+      font-weight: 700;
+      font-size: 24rem;
+      line-height: 31rem;
+    }
+
+    .attribution {
+      margin-top: 239px;
+      font-size: 14px;
+      color: #A9A9A9;
+      text-align: center;
+    }
+
+    .attribution a {
+      font-weight: bold;
+    }
+
+    .material-icons { line-height: 0.7; }
+
+    /* Rules for sizing the icon. */
+    .material-icons.md-18 { font-size: 18px; }
+    .material-icons.md-24 { font-size: 24px; }
+    .material-icons.md-36 { font-size: 36px; }
+    .material-icons.md-48 { font-size: 48px; }
+
+    /* Rules for using icons as black on a light background. */
+    .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+    .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+    /* Rules for using icons as white on a dark background. */
+    .material-icons.md-light { color: rgba(255, 255, 255, 1); }
+    .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+    @media (max-width: 991px) {
+      body {
+        padding: 19px 12px 24px 12px;
+      }
+
+      header {
+        margin-bottom: 38px;
+      }
+
+      #menu:target {
+        display: grid;
+        grid-template: "main";
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        inset: 0;
+        padding: 20px;
+        background: #181719;
+        z-index: 1000;
+      }
+
+      #menu:target .top-nav {
+        grid-area: main;
+        place-self: center;
+        display: flex;
+        flex-direction: column;
+        row-gap: 24px;
+        text-align: center;
+      }
+
+      #menu:target .menu__icon {
+        display: none;
+      }
+
+      #menu:target .menu__close {
+        grid-area: main;
+        display: block;
+        justify-self: end;
+        align-self: start;
+      }
+
+      .top-nav {
+        display: none;
+      }
+
+      .menu__icon {
+        display: block;
+      }
+
+      .hero {
+        flex-direction: column;
+        align-items: start;
+        row-gap: 37px;
+      }
+
+      .hero__text h1 {
+        font-size: 36rem;
+        margin-bottom: 25px;
+      }
+
+      .hero__text p {
+        margin-bottom: 25px;
+      }
+
+      .hero__text p,
+      .hero__text a {
+        font-size: 14rem;
+        line-height: 17rem;
+      }
+
+      .designer {
+        padding: 13px 23px;
+      }
+
+      .designer__image {
+        width: 36px;
+        height: 36px;
+      }
+
+      .designer__name {
+        font-size: 12rem;
+        line-height: 15rem;
+      }
+
+      .designer__job {
+        font-size: 10rem;
+        line-height: 12rem;
+      }
+
+      .designer__content {
+        font-size: 18rem;
+        line-height: 23rem;
+      }
+
+      .attribution {
+        margin-top: 148px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">This Interior</div>
+    <nav id="menu">
+      <ul class="top-nav">
+        <li>
+          <a href="#home" id="home" data-text="Home">Home</a>
+        </li>
+        <li>
+          <a href="#collection" id="collection" data-text="Collection">Collection</a>
+        </li>
+        <li>
+          <a href="#about" id="about" data-text="About">About</a>
+        </li>
+        <li>
+          <a href="#contact" id="contact" data-text="Contact">Contact</a>
+        </li>
+      </ul>
+      <a class="menu__icon" href="#menu">
+        <span class="material-icons md-48">menu</span>
+      </a>
+      <a class="menu__close" href="#home">
+        <span class="material-icons md-48">close</span>
+      </a>
+    </nav>
+  </header>
+  <div class="hero">
+    <div class="hero__text">
+      <h1>Modern interior</h1>
+      <p>A full-Service residential & commercial interior design and staging company offering professional organizing & eco‑services.</p>
+      <a href="#">Read more <span class="material-icons">trending_flat</span></a>
+    </div>
+    <div class="hero__image">
+      <img src="./photo1.png" alt="Living room">
+      <div class="designer">
+        <img class="designer__image" src="./photo2.png" alt="Avatar">
+        <p class="designer__name">Aliza Webber</p>
+        <p class="designer__job">Interior designer</p>
+        <p class="designer__content">Designed in 2020 by Aliza Webber</p>
+      </div>
+    </div>
+  </div>
+  <p class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</p>
+</body>
+</html>
