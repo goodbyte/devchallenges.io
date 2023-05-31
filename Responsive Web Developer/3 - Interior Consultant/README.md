@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://goodbyte.github.io/devchallenges.io/Responsive%20Web%20Developer/3%20-%20Interior%20Consultant/"">
+    <a href="https://goodbyte.github.io/devchallenges.io/Responsive%20Web%20Developer/3%20-%20Interior%20Consultant/">
       Demo
     </a>
     <span> | </span>
