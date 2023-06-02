@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+
+  <title>My Gallery</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      font-size: 6.25%;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: inherit;
+      border: 0;
+      vertical-align: baseline;
+    }
+
+    html,
+    body {
+      min-height: 100vh;
+      line-height: 1;
+    }
+
+    body {
+      max-width: 960px;
+      margin-inline: auto;
+      padding: 30px 12px 24px 12px;
+      font: 600 12rem/15rem Montserrat, sans-serif;
+      text-align: center;
+      color: #4E5150;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 14rem;
+      line-height: 17rem;
+    }
+
+    .flex,
+    .flex-column {
+      display: flex;
+      gap: 12px;
+    }
+
+    .flex-column {
+      flex-direction: column;
+    }
+
+    .flex-column.x-center {
+      align-items: center;
+    }
+
+    .gap-4 {
+      gap: 4px;
+    }
+
+    .subtitle {
+      font-size: 10rem;
+      line-height: 12rem;
+      color: #A9A9A9;
+    }
+
+    .profile img {
+      max-width: 102px;
+      border-radius: 16px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      place-content: center;
+      width: 78px;
+      height: 52px;
+      background: #E5E5E5;
+      border-radius: 12px;
+    }
+
+    .card > :first-child {
+      font-weight: 600;
+    }
+
+    .card > :nth-child(2) {
+      color:#BDBDBD;
+    }
+
+    .grid {
+      margin-top: 39px;
+      display: grid;
+      grid-auto-flow: dense;
+      grid-template: repeat(3, 110px) / repeat(3, 110px);
+      gap: 12px;
+    }
+
+    .grid > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.15));
+      border-radius: 12px;
+    }
+
+    .grid > img:nth-child(2) {
+      grid-column: span 2;
+    }
+
+    .grid > img:nth-child(3) {
+      grid-column: span 2;
+    }
+
+    .grid > img:nth-child(4) {
+      grid-row: span 2;
+    }
+
+    .grid > img:nth-child(5) {
+      grid-column: 2;
+    }
+
+    .attribution {
+      margin-top: 44px;
+      font-size: 14rem;
+      line-height: 17rem;
+      color: #B9BDCF;
+      text-align: center;
+    }
+
+    .attribution a {
+      font-weight: bold;
+    }
+
+    @media (min-width: 992px) {
+      body {
+        padding-top: 60px;
+        font-size: 18rem;
+        line-height: 22rem;
+      }
+
+      h1 {
+        font-size: 24rem;
+        line-height: 29rem;
+      }
+
+      .flex,
+      .flex-column {
+        gap: 16px;
+      }
+
+      .xl-gap-8 {
+        gap: 8px;
+      }
+
+      .xl-gap-24 {
+        gap: 24px;
+      }
+
+      .xl-gap-32 {
+        gap: 32px;
+      }
+
+      .subtitle {
+        font-size: 14rem;
+        line-height: 17rem;
+      }
+
+      .profile img {
+        max-width: 156px
+      }
+
+      .card {
+        min-width: 100px;
+        min-height: 67px;
+      }
+
+      .card > :nth-child(2) {
+        font-size: 14rem;
+        line-height: 17rem;
+      }
+
+      .grid {
+        margin-top: 64px;
+        grid-template: repeat(3, 299px) / repeat(3, 299px);
+      }
+
+      .attribution {
+        margin-top: 134px;
+      }
+    }
+  </style>
+</head>
+<body class="flex-column x-center">
+  <div class="profile flex-column x-center">
+    <img src="./profilePhoto.png" alt="Profile photo">
+    <div class="flex-column gap-4 xl-gap-8">
+      <h1>Rodney Cotton</h1>
+      <h6 class="subtitle">Helsinki, Finland</h6>
+    </div>
+  </div>
+  <div class="flex xl-gap-24">
+    <div class="card">
+      <span>100</span>
+      <span>Posts</span>
+    </div>
+    <div class="card">
+      <span>2,242</span>
+      <span>Followers</span>
+    </div>
+    <div class="card">
+      <span>1,432</span>
+      <span>Following</span>
+    </div>
+  </div>
+  <div class="grid xl-gap-32">
+    <img src="./photo1.png" alt="Photo 1">
+    <img src="./photo2.png" alt="Photo 2">
+    <img src="./photo3.png" alt="Photo 3">
+    <img src="./photo_4.png" alt="Photo 4">
+    <img src="./photo5.png" alt="Photo 5">
+    <img src="./photo6.png" alt="Photo 6">
+  </div>
+  <p class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</p>
+</body>
+</html>
