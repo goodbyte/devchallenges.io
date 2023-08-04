@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+
+  <title>Checkout Page</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    :root {
+      font-size: 6.25%;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: inherit;
+      color: inherit;
+      border: 0;
+      outline: 0;
+      vertical-align: baseline;
+    }
+
+    html,
+    body {
+      min-height: 100vh;
+      line-height: 1;
+    }
+
+    body {
+      margin-inline: auto;
+      max-width: 960px;
+      padding: 32px 18px 24px 18px;
+      font: 600 12rem/15rem Montserrat, sans-serif;
+      color: #4E5150;
+    }
+
+    h1 {
+      margin-bottom: 21rem;
+      font-size: 24rem;
+      line-height: 29rem;
+    }
+
+    h4 {
+      font-size: 14rem;
+      line-height: 17rem;
+    }
+
+    button {
+      padding: 17px 45px;
+      background: #F2994A;
+      font-size: 16rem;
+      line-height: 20rem;
+      color: white;
+      border-radius: 12px;
+    }
+
+    input:not([type=checkbox]),
+    select {
+      width: 100%;
+    }
+
+    select {
+      appearance: none;
+    }
+
+    label[text]::before {
+      content: attr(text);
+      display: block;
+      font-size: 10rem;
+      line-height: 12rem;
+      color: #4F4F4F;
+    }
+
+    label[text] {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .flex,
+    .flex-column {
+      display: flex;
+      gap: 8px;
+    }
+
+    .flex-column {
+      flex-direction: column;
+    }
+
+    .flex.y-center {
+      align-items: center;
+    }
+
+    .flex.x-space-between {
+      justify-content: space-between;
+    }
+
+    .flex-column.x-center {
+      align-items: center;
+    }
+
+    .flex-column > .x-self-end {
+      align-self: flex-end;
+    }
+
+    .grow {
+      flex-grow: 1;
+    }
+
+    .gap-17 {
+      gap: 17px;
+    }
+
+    .gap-29 {
+      gap: 29px
+    }
+
+    .gap-87 {
+      gap: 87px;
+    }
+
+    .mt-20 {
+      margin-top: 20px;
+    }
+
+    .mb-45 {
+      margin-bottom: 45px;
+    }
+
+    .invoice {
+      margin-bottom: 39px;
+      padding: 31px 27px 12px 27px;
+      background: #F2F2F2;
+      border-radius: 12px;
+    }
+
+    .item {
+      display: grid;
+      grid-template:
+        "image title" auto
+        "image price" auto
+        "image amount" 1fr / auto 1fr;
+      place-items: start;
+      column-gap: 18px;
+      row-gap: 6px;
+    }
+
+    .item__img {
+      grid-area: image;
+      width: 123px;
+      height: 125px;
+      border-radius: 13px;
+    }
+
+    .item__name {
+      grid-area: title;
+    }
+
+    .item__price {
+      grid-area: price;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .item__price span:first-child {
+      font-size: 14rem;
+      line-height: 17rem;
+      color: #F2994A;
+    }
+
+    .item__price span + span {
+      text-decoration: line-through;
+      font-size: 10rem;
+      line-height: 12rem;
+    }
+
+    .item__amount {
+      grid-area: amount;
+      align-self: flex-end;
+      display: flex;
+      gap: 30px;
+      padding: 15px;
+      font-size: 16rem;
+      line-height: 20rem;
+      color: #333;
+      border: 1px solid #828282;
+      border-radius: 12px;
+    }
+
+    .item__amount input {
+      width: 15px;
+      background: transparent;
+      text-align: center;
+    }
+
+    .item__amount :first-child,
+    .item__amount :last-child {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      min-width: 19px;
+      min-height: 19px;
+      background: #E0E0E0;
+      color: #828282;
+      border-radius: 4px;
+      user-select: none;
+    }
+
+    .shipping,
+    .total {
+      padding: 10px 0;
+      font-size: 14rem;
+      line-height: 17rem;
+      color: #333;
+      border-top: 1px solid #BDBDBD;
+    }
+
+    .input {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      gap: 12px;
+      border: 1px solid #828282;
+      border-radius: 12px;
+    }
+
+    .input:focus-within {
+      border-color: #F2994A;
+    }
+
+    .input .material-icons {
+      color: #828282;
+    }
+
+    .input input {
+      color: #333333;
+    }
+
+    .form-result {
+      font-size: 18rem;
+      padding: 16px;
+      color: #fdfdfd;
+      border-radius: 2px;
+    }
+
+    .form-result--ok {
+      background: #63b563;
+    }
+
+    .form-result--error {
+      background: rgb(219, 82, 82);
+    }
+
+    .error::before {
+      content: '▲';
+      position: absolute;
+      top: -14px;
+      color: #ff00001c;
+    }
+
+    .error {
+      position: relative;
+      margin-top: 4px;
+      background: #ff00001c;
+      color: #CC3333;
+      font-size: 12rem;
+      padding: 4px 8px;
+      border-radius: 8px;
+    }
+
+    .error--hidden {
+      display: none;
+    }
+
+    .attribution {
+      margin-top: 95px;
+      font-size: 14rem;
+      line-height: 17rem;
+      color: #BDBDBD;
+      text-align: center;
+    }
+
+    .attribution a {
+      font-weight: bold;
+    }
+
+    /* Rules for sizing the icon. */
+    .material-icons.md-18 { font-size: 18px; }
+    .material-icons.md-24 { font-size: 24px; }
+    .material-icons.md-36 { font-size: 36px; }
+    .material-icons.md-48 { font-size: 48px; }
+
+    /* Rules for using icons as black on a light background. */
+    .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+    .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+    /* Rules for using icons as white on a dark background. */
+    .material-icons.md-light { color: rgba(255, 255, 255, 1); }
+    .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+    @media (min-width: 960px) {
+      body {
+        padding-top: 64px;
+        font-size: 16rem;
+        line-height: 20rem;
+      }
+
+      h1 {
+        font-size: 36rem;
+        line-height: 44rem;
+      }
+
+      h4 {
+        font-size: 18rem;
+        line-height: 22rem;
+      }
+
+      label:has(input[type="checkbox"]) {
+        font-size: 12rem;
+        line-height: 15rem;
+      }
+
+      label[text]::before {
+        font-size: 12rem;
+        line-height: 15rem;
+      }
+
+      .invoice {
+        min-width: 383px;
+      }
+
+      .md-flex {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .md-flex.md-x-space-between {
+        justify-content: space-between;
+      }
+
+      .md-flex.md-y-start {
+        align-items: flex-start;
+      }
+
+      .md-order-1 {
+        order: 1;
+      }
+
+      .md-gap-112 {
+        gap: 112px;
+      }
+
+      .md-mb-58 {
+        margin-bottom: 58px;
+      }
+
+      .md-max-with-465 {
+        max-width: 465px;
+      }
+
+      .attribution {
+        margin-top: 159px;
+      }
+    }
+  </style>
+</head>
+<body class="flex-column">
+  <h1>Checkout</h1>
+  <div class="flex-column md-flex md-x-space-between md-y-start">
+    <section class="invoice flex-column gap-87 md-order-1">
+      <div class="items flex-column gap-29">
+        <div id="item1" class="item">
+          <img class="item__img" src="./photo1.png" alt="Backpack">
+          <span class="item__name">Vintage Backbag</span>
+          <div class="item__price">
+            <span>$54.99</span>
+            <span>$94.99</span>
+          </div>
+          <div class="item__amount">
+            <span class="subtract">-</span>
+            <input class="amount" type="text" value="1">
+            <span class="add">+</span>
+          </div>
+        </div>
+        <div id="item2" class="item">
+          <img class="item__img" src="./photo2.png" alt="Shoes">
+          <span class="item_title">Levi Shoes</span>
+          <div class="item__price">
+            <span>$74.99</span>
+            <span>$124.99</span>
+          </div>
+          <div class="item__amount">
+            <span class="subtract">-</span>
+            <input class="amount" type="text" value="1">
+            <span class="add">+</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex-column">
+        <div class="shipping flex x-space-between">
+          <span>Shipping</span>
+          <span>$19</span>
+        </div>
+        <div class="total flex x-space-between">
+          <span>Total</span>
+          <span id="total">$148.98</span>
+        </div>
+      </div>
+    </section>
+    <form id="myForm" class="flex-column gap-17 md-max-with-465" autocomplete="off">
+      <h4>Contact infomation</h4>
+      <label text="E-mail">
+        <div class="input">
+          <span class="material-icons">email</span>
+          <input type="email" name="email" placeholder="Enter your email..." required>
+        </div>
+      </label>
+      <label text="Phone" class="mb-45 md-mb-58">
+        <div class="input">
+          <span class="material-icons">phone</span>
+          <input type="tel" name="tel" placeholder="Enter your phone..." required>
+        </div>
+      </label>
+      <h4>Shipping address</h4>
+      <label text="Full name">
+        <div class="input">
+          <span class="material-icons">account_circle</span>
+          <input type="text" name="fullname" placeholder="Enter your full name..." value="Rodney Cotton" required>
+        </div>
+      </label>
+      <label text="Address">
+        <div class="input">
+          <span class="material-icons">home</span>
+          <input type="text" name="address" placeholder="Your address.." required>
+        </div>
+      </label>
+      <label text="City">
+        <div class="input">
+          <span class="material-icons">location_city</span>
+          <input type="text" name="city" placeholder="Your city.." required>
+        </div>
+      </label>
+      <div class="flex">
+        <label text="Country" class="grow">
+          <div class="input">
+            <span class="material-icons">public</span>
+            <select name="country" required>
+              <option value="" selected>Your country..</option>
+              <option value="EEUU">EEUU</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Brasil">Brasil</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Uruguay">Uruguay</option>
+            </select>
+            <span class="material-icons md-18" style="background: #E0E0E0; border-radius: 4px; user-select: none;">expand_more</span>
+          </div>
+        </label>
+        <label text="Postal code" class="grow">
+          <div class="input">
+            <span class="material-icons">markunread_mailbox</span>
+            <input type="text" name="postal" placeholder="Your postal code.." required>
+          </div>
+        </label>
+      </div>
+      <label for="save" class="flex y-center">
+        <input type="checkbox" id="save">
+        Save this information for next time
+      </label>
+      <button class="x-self-end mt-20">Continue</button>
+    </form>
+  </div>
+  <p class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</p>
+
+  <script>
+    (function() {
+      class Validator {
+        constructor(formID) {
+          this.formEl = document.getElementById(formID);
+
+          if (!this.formEl) throw new TypeError(`Form element doesn't exist`);
+
+          this.formEl.setAttribute('novalidate', true);
+          const formObj = this._getFormDataObject();
+
+          Object.keys(formObj).forEach((name) => {
+            this._getFormElementsByName(name).forEach((el) => {
+              el.addEventListener('blur', this._checkValidity.bind(this, name))
+            });
+          });
+
+          this.formEl.addEventListener('submit', this._onSubmit.bind(this));
+        }
+
+        _getFormElementsByName(name) {
+          return this.formEl.querySelectorAll(`[name="${name}"]`);
+        }
+
+        _checkValidity(name) {
+          const el = this._getFormElementsByName(name)[0];
+          const isValid = el.checkValidity();
+
+          const parentEl = el.parentElement.parentElement;
+          let errorEl = parentEl.querySelector('.error');
+
+          if (isValid) {
+            if (errorEl) errorEl.classList.add('error--hidden');
+            return;
+          }
+
+          if (!errorEl) {
+            errorEl = document.createElement('div');
+            errorEl.classList.add('error');
+            parentEl.appendChild(errorEl);
+          }
+
+          errorEl.innerHTML = el.validationMessage;
+        }
+
+        _onSubmit(e) { 
+          e.preventDefault();
+
+          const isValid = this.formEl.checkValidity();
+          const formObj = this._getFormDataObject();
+          
+          Object.keys(formObj).forEach((name) => this._checkValidity(name));
+
+          if (typeof this.onFormSubmit === 'function') {
+            this.onFormSubmit(isValid);
+          }
+        }
+
+        _getFormDataObject() {
+          const formArr = Array.from(new FormData(this.formEl));
+
+          const formObj = formArr.reduce((acc, cur) => {
+            const [key, val] = cur;
+
+            Array.isArray(acc[key]) ?
+              acc[key].push(val) :
+              acc[key] = [val];
+
+            return acc;
+          }, {});
+
+          return formObj;
+        }
+      }
+
+      const selectEl = document.querySelector('select[name=country]');
+      selectEl.addEventListener('change', () => {
+        selectEl.querySelector(':first-child').setAttribute('disabled', true);
+      }, {once: true});
+
+      const validator = new Validator('myForm');
+      validator.onFormSubmit = (isValid) => {
+        const formEl = document.getElementById('myForm');
+        let messageEl = formEl.querySelector('.form-result');
+
+        if (!messageEl) {
+          messageEl = document.createElement('div');
+          messageEl.classList.add('form-result');
+          formEl.prepend(messageEl);
+        }
+
+        if (isValid) {
+          messageEl.textContent = '✓ Form submitted successfully!';
+          messageEl.classList.remove('form-result--error');
+          messageEl.classList.add('form-result--ok');
+        } else {
+          messageEl.textContent = '⚠ There are items that require your attention!';
+          messageEl.classList.remove('form-result--ok');
+          messageEl.classList.add('form-result--error');
+        }
+
+        messageEl.scrollIntoView();
+        window.scrollBy(0, -20);
+      };
+    })();
+  </script>
+
+  <script>
+    (function() {
+      class Item {
+        set amount(value) {
+          const val = parseInt(value);
+          this._amount = this.amountEl.value = (isNaN(val) || val <= 0) ? 1 : val;
+
+          const price = (this.amount * this.price).toFixed(2);
+          const priceOld = (this.amount * this.priceOld).toFixed(2);
+
+          this.priceEl.textContent = `$${price}`;
+          this.priceOldEl.textContent = `$${priceOld}`;
+
+          if (typeof this.amountChangedCallback === 'function') {
+            this.amountChangedCallback();
+          }
+        }
+
+        get amount() {
+          return this._amount;
+        }
+
+        constructor(opts) {
+          const {amount, price, priceOld, el, amountChangedCallback} = opts;
+
+          this.el = el;
+          this._amount = amount;
+          this.price = price;
+          this.priceOld = priceOld;
+          this.amountChangedCallback = amountChangedCallback;
+
+          this.priceEl = el.querySelector('.item__price :first-child');
+          this.priceOldEl = el.querySelector('.item__price span + span');
+          this.amountEl = el.querySelector('.item__amount .amount');
+          this.addEl = el.querySelector('.item__amount .add');
+          this.subEl = el.querySelector('.item__amount .subtract');
+
+          this.amountEl.addEventListener('blur', this.amountChanged.bind(this));
+          this.addEl.addEventListener('click', this.add.bind(this));
+          this.subEl.addEventListener('click', this.sub.bind(this));
+
+          this.priceEl.textContent = `$${price}`;
+          this.priceOldEl.textContent = `$${priceOld}`;
+          this.amountEl.value = amount;
+        }
+
+        amountChanged(e) {
+          this.amount = e.target.value;
+        }
+
+        add() {
+          this.amount++;
+        }
+
+        sub() {
+          this.amount--;
+        }
+      }
+
+      const item1 = new Item({
+        amount: 1,
+        price: 54.99,
+        priceOld: 94.99,
+        el: document.getElementById('item1'),
+        amountChangedCallback: amountChanged,
+      });
+
+      const item2 = new Item({
+        amount: 1,
+        price: 74.99,
+        priceOld: 124.99,
+        el: document.getElementById('item2'),
+        amountChangedCallback: amountChanged,
+      });
+
+      const totalEl = document.getElementById('total');
+      const items = [item1, item2];
+
+      function amountChanged() {
+        const total = items.reduce((prev, item) => {
+          prev += item.amount * item.price;
+          return prev;
+        }, 0);
+
+        totalEl.textContent = `$${total.toFixed(2)}`;
+      }
+    })();
+  </script>
+</body>
+</html>
