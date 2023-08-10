@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+
+  <title>Edie homepage</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@800&family=Montserrat:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    :root {
+      font-size: 6.25%;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: inherit;
+      color: inherit;
+      border: 0;
+      outline: 0;
+      vertical-align: baseline;
+    }
+
+    html,
+    body {
+      min-height: 100vh;
+      line-height: 1;
+    }
+
+    body {
+      font-family: Poppins, sans-serif;
+      font-size: 16rem;
+      color: #333;
+    }
+
+    header {
+      padding-top: 13px;
+      margin-bottom: 48px;
+    }
+    
+    header,
+    main {
+      padding-inline: 10px;
+    }
+
+    footer {
+      padding: 36px 41px 24px 41px;
+      background: #100E1D;
+    }
+
+    footer ul {
+      color: white;
+    }
+
+    h1,
+    h2 {
+      font-size: 24rem;
+      line-height: 36rem;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 12rem;
+      line-height: 18rem;
+      font-weight: 400;
+      color: #4F4F4F;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      font-size: 14rem;
+      line-height: 21rem;
+      font-weight: 500;
+      padding: 12px 20px;
+      background: #2D9CDB;
+      color: #F2F2F2;
+      border-radius: 12px;
+    }
+
+    ul {
+      list-style: none;
+      font-size: 18rem;
+      line-height: 36rem;
+      font-weight: 400;
+    }
+
+    .p-relative {
+      position: relative;
+    }
+
+    .flex,
+    .flex-column {
+      display: flex;
+      gap: 8px;
+    }
+
+    .flex-column {
+      flex-direction: column;
+    }
+
+    .flex.flex-x-space-between {
+      justify-content: space-between;
+    }
+
+    .flex.flex-y-center {
+      align-items: center;
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+
+    .gap-7 {
+      gap: 7px;
+    }
+
+    .gap-9 {
+      gap: 9px;
+    }
+
+    .gap-11 {
+      gap: 11px;
+    }
+
+    .gap-40 {
+      gap: 40px;
+    }
+
+    .gap-64 {
+      gap: 64px;
+    }
+
+    .row-gap-36 {
+      row-gap: 36px;
+    }
+
+    .mx-auto {
+      margin-inline: auto;
+    }
+
+    .mx-30 {
+      margin-inline: 30px;
+    }
+
+    .mb-14 {
+      margin-bottom: 14px;
+    }
+
+    .mb-15 {
+      margin-bottom: 15px;
+    }
+
+    .mb-31 {
+      margin-bottom: 31px;
+    }
+
+    .mb-33 {
+      margin-bottom: 33px;
+    }
+
+    .mb-46 {
+      margin-bottom: 46px;
+    }
+
+    .mb-48 {
+      margin-bottom: 48px;
+    }
+
+    .mb-100 {
+      margin-bottom: 100px;
+    }
+
+    .width-145 {
+      width: 145px;
+    }
+
+    .width-162 {
+      width: 162px;
+    }
+
+    .width-178 {
+      width: 178px;
+    }
+
+    .height-167 {
+      height: 167px;
+    }
+
+    .max-width-259 {
+      max-width: 259px;
+    }
+
+    .max-width-280 {
+      max-width: 280px;
+    }
+
+    .max-width-448 {
+      max-width: 448px;
+    }
+
+    /* nav menu - start */
+
+    nav ul {
+      display: none;
+      font-weight: 500;
+      overflow: hidden;
+    }
+
+    nav.active ul {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      left: 0;
+      width: 100%;
+      background: #080808;
+      z-index: 10000;
+    }
+
+    nav.active ul li {
+      padding: 10px;
+      color: #555;
+    }
+
+    nav.active ul li.active {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    nav.active ul li.active,
+    nav.active ul li:hover {
+      color: #eee;
+    }
+
+    #navbarToggler {
+      display: block;
+    }
+
+    .ham {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 400ms;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .ham .top {
+      stroke-dasharray: 40 139;
+    }
+
+    .ham .bottom {
+      stroke-dasharray: 40 180;
+    }
+
+    .line {
+      fill: none;
+      transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+      stroke: black;
+      stroke-width: 5.5;
+      stroke-linecap: round;
+    }
+
+    nav.active .ham {
+      transform: rotate(45deg);
+    }
+
+    nav.active .ham .top {
+      stroke-dashoffset: -98px;
+    }
+
+    nav.active .ham .bottom {
+      stroke-dashoffset: -138px;
+    }
+
+    /* nav menu - end */
+
+    .brand {
+      font-family: Heebo, sans-serif;
+      font-size: 24rem;
+      line-height: 35rem;
+      font-weight: 800;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 30px auto 30px;
+      grid-template-areas: ". center .";
+      margin-bottom: 102px;
+    }
+
+    .hero > * {
+      grid-column: center;
+    }
+
+    .subtitle {
+      font-size: 12rem;
+      line-height: 18rem;
+      font-weight: 500;
+      color: #2D9CDB;
+    }
+
+    .subtitle-red {
+      margin-bottom: 7px;
+      font-size: 18rem;
+      line-height: 27rem;
+      font-weight: 500;
+      color: #EB5757;
+    }
+
+    .hero__image {
+      grid-column: 1 / -1;
+      margin-bottom: 22px;
+      width: 100%;
+      min-height: 145px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    .cta p {
+      min-height: 21px;
+      font-size: 10rem;
+      line-height: 15rem;
+      font-weight: 500;
+      color: #828282;
+    }
+
+    .form-input {
+      display: flex;
+      padding: 4px;
+      background: #F2F2F2;
+      border-radius: 12px;
+    }
+
+    .form-input input[type=email] {
+      margin: 10px;
+      width: 100%;
+      font-size: 14rem;
+      line-height: 21rem;
+      font-weight: 500;
+      background: transparent;
+    }
+
+    ::placeholder {
+      color: #BDBDBD;
+    }
+
+    .card {
+      padding: 49px 34px 43px 34px;
+      border-radius: 24px;
+      margin-bottom: 72px;
+    }
+
+    .card:hover {
+      cursor: pointer;
+      box-shadow: 0px 10px 30px 0px #3333331A;
+    }
+
+    .card .material-icons {
+      display: grid;
+      place-items: center;
+      margin-bottom: 35px;
+      width: 67px;
+      height: 67px;
+      font-size: 36rem;
+      color: #FFFFFF;
+      border-radius: 16px;
+    }
+
+    .card__title {
+      margin-bottom: 24px;
+      font-size: 24rem;
+      line-height: 36rem;
+      font-weight: 700;
+    }
+
+    .card__text {
+      margin-bottom: 30px;
+      font-size: 16rem;
+      line-height: 24rem;
+      font-weight: 400;
+    }
+
+    .card button {
+      padding: 9px 12px;
+      font-size: 16rem;
+      line-height: 24rem;
+      font-weight: 500;
+      color: #828282;
+      background: #E0E0E0;
+    }
+    
+    .card button:hover {
+      color: #FFFFFF;
+      background: #2D9CDB;
+    }
+
+    .card2 img {
+      margin-bottom: 13px;
+      width: 100%;
+      max-width: 543px;
+      border-radius: 24px;
+    }
+
+    .card2 p {
+      font-size: 12rem;
+      line-height: 18rem;
+      font-weight: 300;
+      color: #828282;
+    }
+
+    .card2 p + p {
+      font-size: 18rem;
+      line-height: 27rem;
+      font-weight: 500;
+      color: #333333;
+    }
+
+    .see-more {
+      display: block;
+      font-size: 18rem;
+      line-height: 27rem;
+      font-weight: 500;
+      color: #2D9CDB;
+    }
+
+    .heading-xl {
+      font-size: 36rem;
+      line-height: 54rem;
+    }
+
+    .p-custom-1 {
+      font-size: 16rem;
+      line-height: 24rem;
+      font-weight: 400;
+      color: #4F4F4F;;
+    }
+
+    .gallery img {
+      object-fit: cover;
+      border-radius: 24px;
+    }
+
+    .testimony {
+      display: grid;
+      grid-template:
+        "text text text"
+        "image author author"
+        "image company company" / auto 1fr;
+      max-width: 937px;
+    }
+
+    .testimony__text {
+      grid-area: text;
+      margin-bottom: 27px;
+      font-size: 24rem;
+      line-height: 36rem;
+      font-weight: 500;
+      color: #333333;
+    }
+
+    .testimony__image {
+      grid-area: image;
+      margin-right: 30px;
+      border-radius: 12px;
+      width: 82px;
+      height: 82px;
+    }
+
+    .testimony__author {
+      grid-area: author;
+      margin-bottom: 12px;
+      font-size: 24rem;
+      line-height: 36rem;
+      font-weight: 500;
+      color: #333333;
+    }
+
+    .testimony__company {
+      grid-area: company;
+      font-size: 18rem;
+      line-height: 27rem;
+      font-weight: 500;
+      color: #828282;
+    }
+
+    .social__name {
+      font-family: Heebo, sans-serif;
+      font-size: 36rem;
+      line-height: 53rem;
+      font-weight: 800;
+      color: #F2F2F2;
+    }
+
+    .attribution {
+      margin-top: 154px;
+      font-family: Montserrat, sans-serif;
+      font-size: 14rem;
+      line-height: 17rem;
+      color: #F2F2F2;
+      text-align: center;
+    }
+
+    .attribution a {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    @media (min-width: 992px) {
+      header {
+        padding-top: 42px;
+        margin-bottom: 96px;
+      }
+
+      header,
+      main {
+        padding-inline: 52px;
+      }
+
+      h1,
+      h2 {
+        font-size: 48rem;
+        line-height: 72rem;
+      }
+
+      p {
+        font-size: 18rem;
+        line-height: 27rem;
+      }
+
+      button {
+        padding: 11px 27px;
+        font-size: 18rem;
+        line-height: 27rem;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 70px;
+        font-size: 24rem;
+        line-height: 36rem;
+      }
+
+      #navbarToggler {
+        display: none;
+      }
+
+      .brand {
+        font-size: 36rem;
+        line-height: 53rem;
+      }
+
+      .hero {
+        grid-template-columns: 225px auto 225px;
+        margin-bottom: 200px;
+      }
+
+      .cta p {
+        font-size: 14rem;
+        line-height: 21rem;
+      }
+
+      .form-input input[type=email] {
+        margin: 11px 17px;
+        font-size: 18rem;
+        line-height: 27rem;
+      }
+
+      .subtitle {
+        font-size: 18rem;
+        line-height: 27rem;
+      }
+
+      .apps {
+        --gap: 20px;
+        column-gap: var(--gap);
+      }
+
+      .card2 {
+        flex-basis: calc(50% - var(--gap));
+      }
+
+      .card2:nth-child(odd) {
+        margin-top: 160px;
+      }
+
+      .card2 p {
+        font-size: 14rem;
+        line-height: 21rem;
+      }
+
+      .card2 p + p {
+        font-size: 24rem;
+        line-height: 36rem;
+      }
+
+      .see-more {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-size: 24rem;
+        line-height: 36rem;
+      }
+
+      .lg-flex,
+      .lg-flex-column {
+        display: flex;
+      }
+
+      .lg-flex {
+        flex-direction: row;
+      }
+
+      .lg-flex-column {
+        flex-direction: column;
+      }
+
+      .lg-flex-x-space-between {
+        justify-content: space-between;
+      }
+
+      .lg-flex-y-center {
+        align-items: center;
+      }
+
+      .lg-flex-wrap {
+        flex-wrap: wrap;
+      }
+
+      .lg-gap-24 {
+        gap: 24px;
+      }
+
+      .lg-gap-42 {
+        gap: 42px;
+      }
+
+      .lg-heading-xl {
+        font-size: 36rem;
+        line-height: 54rem;
+      }
+
+      .lg-mx-auto {
+        margin-inline: auto;
+      }
+
+      .lg-mx-0 {
+        margin-inline: 0;
+      }
+
+      .lg-mb-0 {
+        margin-bottom: 0px;
+      }
+
+      .lg-mb-12 {
+        margin-bottom: 12px;
+      }
+
+      .lg-mb-16 {
+        margin-bottom: 16px;
+      }
+
+      .lg-mb-42 {
+        margin-bottom: 42px;
+      }
+
+      .lg-mb-241 {
+        margin-bottom: 241px;
+      }
+
+      .lg-mb-194 {
+        margin-bottom: 194px;
+      }
+
+      .lg-mb-196 {
+        margin-bottom: 196px;
+      }
+
+      .lg-mb-200 {
+        margin-bottom: 200px;
+      }
+
+      .lg-width-260 {
+        width: 260px;
+      }
+
+      .lg-width-291 {
+        width: 291px;
+      }
+
+      .lg-width-320 {
+        width: 320px;
+      }
+
+      .lg-height-300 {
+        height: 300px;
+      }
+
+      .lg-max-width-346 {
+        max-width: 346px;
+      }
+
+      .lg-max-width-366 {
+        max-width: 366px;
+      }
+
+      .lg-max-width-543 {
+        max-width: 543px;
+      }
+
+      .lg-max-width-1103 {
+        max-width: 1103px;
+      }
+
+      .lg-card {
+        padding: 46px 34px;
+      }
+
+      .card button {
+        font-size: 16rem;
+        line-height: 24rem;
+      }
+
+      .testimony__text {
+        font-size: 36rem;
+        line-height: 54rem;
+      }
+
+      .attribution {
+        margin-top: 118px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="flex flex-x-space-between flex-y-center">
+    <div id="home" class="brand">Edie</div>
+    <nav>
+      <div id="navbarToggler">
+        <svg class="ham" viewBox="0 0 100 100" width="40">
+          <path class="line top" d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+          <path class="line middle" d="m 30,50 h 40" />
+          <path class="line bottom" d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+        </svg>
+      </div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Service</a></li>
+        <li><a href="#our-works">Our Works</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="hero">
+      <h3 class="subtitle lg-mb-16">Unhappy with your website?</h3>
+      <h1 class="mb-15 lg-max-width-543 lg-mb-42">We create beautiful and fast web services</h1>
+      <img class="hero__image lg-mb-42" src="./heroImage.jpg" alt="">
+      <div id="contact" class="lg-flex-column lg-gap-42 lg-max-width-366">
+        <h2 class="mb-33 lg-mb-0">Story, emotion and purpose</h2>
+        <p class="mb-31 lg-mb-0">We help transform your ideas into real world applications that will outperform your toughest competition and help you achieve your strategic goals in short period of time.</p>
+        <div class="cta">
+          <p>Want us to contact you?</p>
+          <div class="form-input">
+            <input type="email" placeholder="Email">
+            <button>Join</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lg-max-width-1103 lg-mx-auto">
+      <h2 id="services" class="mx-30 mb-46 max-width-259 lg-max-width-346 lg-mx-0 lg-heading-xl lg-mb-42">We offer high demand services</h2>
+      <div class="flex-column gap-40 mb-100 lg-flex lg-mb-194">
+        <div class="card">
+          <span class="material-icons" style="background: #2D9CDB;">edit</span>
+          <p class="card__title">UI/UX Design</p>
+          <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a metus ac nulla consequat aliquet id quis turpis.</p>
+          <button>Get started</button>
+        </div>
+        <div class="card">
+          <span class="material-icons" style="background: #27AE60;">code</span>
+          <p class="card__title">Front End</p>
+          <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a metus ac nulla consequat aliquet id quis turpis.</p>
+          <button>Get started</button>
+        </div>
+        <div class="card">
+          <span class="material-icons" style="background: #EB5757;">storage</span>
+          <p class="card__title">Front End</p>
+          <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a metus ac nulla consequat aliquet id quis turpis.</p>
+          <button>Get started</button>
+        </div>
+      </div>
+      <h2 id="our-works" class="mx-30 mb-48 max-width-448 lg-mx-0 lg-mb-12 lg-heading-xl">Good design means good business</h2>
+      <div class="p-relative flex-column row-gap-36 mb-100 lg-mb-241">
+        <div class="apps flex-column row-gap-36 lg-flex lg-flex-wrap lg-flex-x-space-between">
+          <div class="card2">
+            <img src="./smarthome.jpg" alt="Smart Home">
+            <p>Full stack application</p>
+            <p>Smart home dashboard</p>
+          </div>
+          <div class="card2">
+            <img src="./onboard.png" alt="Onboard">
+            <p>UX/UI design</p>
+            <p>Onboard application</p>
+          </div>
+          <div class="card2">
+            <img src="./booking.png" alt="Booking">
+            <p>Mobile application</p>
+            <p>Booking system</p>
+          </div>
+          <div class="card2">
+            <img src="./juice-product.png" alt="Juice Product">
+            <p>Front End applicati on</p>
+            <p>Juice product homepage</p>
+          </div>
+        </div>
+        <a class="see-more" href="#">see more →</a>
+      </div>
+      <div class="flex flex-x-space-between flex-wrap row-gap-36 mb-100 lg-flex lg-flex-y-center lg-flex-x-space-between lg-mb-196">
+        <div class="max-width-280">
+          <h3 class="subtitle-red">Meet the team</h3>
+          <h2 class="heading-xl mb-14">We are chilled and a laidback team</h2>
+          <p class="p-custom-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="gallery flex flex-y-center gap-9 lg-gap-24">
+          <img class="width-178 lg-width-320" src="./person3.png" alt="">
+          <div class="flex-column gap-9 lg-gap-24">
+            <img class="width-145 lg-width-260" src="./person1.png" alt="">
+            <img class="width-162 height-167 lg-width-291 lg-height-300" src="./person2.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div id="clients" class="testimony mb-100 lg-mb-200">
+        <p class="testimony__text">“Fast and outstanding resutls. Edie understands their customer’s needs. They have a young and talented team.”    </p>
+        <img class="testimony__image" src="./person4.png" alt="Carlos Tran profile picture">
+        <p class="testimony__author">Carlos Tran</p>
+        <p class="testimony__company">The Decorate Gatsby</p>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="lg-max-width-1103 lg-mx-auto">
+      <div class="flex-column gap-64 mx-auto lg-flex lg-flex-x-space-between">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Service</a></li>
+          <li><a href="#our-works">Our Works</a></li>
+          <li><a href="#clients">Clients</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="flex-column gap-7">
+          <p class="social__name">Edie</p>
+          <div class="flex flex-y-center gap-11">
+            <img src="./instagram.svg" alt="Instagram">
+            <img src="./linkedin.svg" alt="Linkedin">
+            <img src="./twitter.svg" alt="Twitter">
+          </div>
+        </div>
+        <div class="cta">
+          <p>Want us to contact you?</p>
+          <div class="form-input">
+            <input type="email" placeholder="Email">
+            <button>Join</button>
+          </div>
+        </div>
+      </div>
+      <p class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</p>
+    </div>
+  </footer>
+
+  <script>
+    {
+      const nav = document.querySelector('nav');
+      const toggler = document.querySelector('#navbarToggler');
+    
+      toggler.addEventListener('click', function(e) {
+        e.stopPropagation();
+
+        nav.classList.toggle('active');
+
+        if (nav.classList.contains('active')) {
+          document.body.addEventListener('click', () => nav.classList.remove('active'), {once: true});
+        }
+      });
+    }
+  </script>
+</body>
+</html>
