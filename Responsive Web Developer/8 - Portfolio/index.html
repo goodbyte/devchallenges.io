@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+
+  <title>Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    :root {
+      font-size: 6.25%;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: inherit;
+      color: inherit;
+      border: 0;
+      vertical-align: baseline;
+    }
+
+    html,
+    body {
+      min-height: 100vh;
+    }
+
+    body {
+      /* padding: 71px 65px 31px 65px; */
+      padding-top: clamp(10px, 5.73vw - 11.479px, 71px);
+      padding-inline: clamp(10px, 5.16vw - 9.366px, 65px);
+      padding-bottom: 31px;
+      font: 500 16rem/1 Montserrat, sans-serif;
+      color: #333333;
+      background: #F2F2F2;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: min(28.7%, 413px) auto;
+      /* margin-inline: auto; */
+      /* max-width: 1046px; */
+      gap: 32px;
+    }
+
+    a {
+      color: #2F80ED;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    button {
+      padding: 12px 35px;
+      border: 1px solid #4F4F4F;
+      background: transparent;
+      color: #4F4F4F;
+      border-radius: 12px;
+    }
+
+    button:hover {
+      border-color: #2F80ED;
+      color: #2F80ED;
+    }
+
+    button.primary,
+    button.active {
+      background: #2F80ED;
+      color: #FFFFFF;
+      border-color: #2F80ED;
+    }
+
+    meter {
+      width: 100%;
+      min-height: 20px;
+    }
+
+    meter::-webkit-meter-bar {
+      background: none;
+      background-color: #c4c4c4;
+      border: 0;
+    }
+
+    meter::-webkit-meter-optimum-value {
+      background: #2F80ED;
+      border-radius: 4px;
+    }
+
+    .flex,
+    .flex-column {
+      display: flex;
+      gap: 8px;
+    }
+
+    .flex-column {
+      flex-direction: column;
+    }
+
+    .flex.flex-y-center {
+      align-items: center;
+    }
+
+    .flex-grow {
+      flex-grow: 1;
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+
+    .gap-6 {
+      gap: 6px;
+    }
+
+    .gap-16 {
+      gap: 16px;
+    }
+
+    .gap-17 {
+      gap: 17px;
+    }
+    
+    .gap-32 {
+      gap: 32px;
+    }
+
+    .gap-36 {
+      gap: 36px;
+    }
+
+    .gap-42 {
+      gap: 42px;
+    }
+
+    .gap-48 {
+      gap: 48px;
+    }
+
+    .uppercase {
+      text-transform: uppercase;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding: 23px;
+      border-radius: 12px;
+      background: #FFFFFF;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 90%;
+      height: 50px;
+      background: transparent;
+      box-shadow: 0 4px 32px #00000012;
+      z-index: -1;
+    }
+
+    .card.card--me img {
+      max-width: 367px;
+      max-height: 359px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .card.card--me h1 {
+      font-size: 24rem;
+      line-height: 29rem;
+      font-weight: 600;
+      color: #4F4F4F;
+    }
+
+    .card.card--me h2 {
+      font-size: 18rem;
+      line-height: 22rem;
+      font-weight: 500;
+      color: #828282;
+    }
+
+    .card.card--me .contact {
+      font-size: 18rem;
+      line-height: 22rem;
+      color: #4F4F4F;
+    }
+
+    .card.card--me span {
+      word-break: break-all;
+    }
+
+    .card.card--me p {
+      font-size: 18rem;
+      line-height: 22rem;
+      color: #828282;
+    }
+
+    .card.card--skill {
+      flex-grow: 1;
+      min-width: 250px;
+    }
+
+    .card.card--skill h2 {
+      font-size: 18rem;
+      line-height: 22rem;
+      font-weight: 700;
+      color: #4F4F4F;
+    }
+
+    .skill {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .skill__name {
+      min-width: 110px;
+    }
+
+    .card.card--filter p {
+      font-size: 18rem;
+      line-height: 22rem;
+      color: #4F4F4F;
+    }
+
+    .card.card--filter .tags {
+      display: flex;
+      gap: 16px;
+    }
+
+    .card--experiences {
+      container: experiences / inline-size;
+    }
+
+    .card--experiences h2 {
+      margin-bottom: 44px;
+      font-size: 24rem;
+      line-height: 29rem;
+      font-weight: 500;
+      color: #4F4F4F;
+    }
+
+    .experience {
+      display: grid;
+      grid-template: 
+        "logo range"
+        "logo position"
+        "logo description" / 84px auto;
+      column-gap: 16px;
+    }
+
+    .experience__img {
+      grid-area: logo;
+      width: 84px;
+      height: 84px; 
+      object-fit: none;
+    }
+
+    .experience__range {
+      grid-area: range;
+      margin-bottom: 12px;
+      font-size: 14rem;
+      line-height: 17rem;
+      color: #828282;
+    }
+
+    .experience__position {
+      grid-area: position;
+      margin-bottom: 33px;
+      font-size: 16rem;
+      line-height: 20rem;
+      font-weight: 600;
+      color: #333333;
+    }
+
+    .experience__description {
+      grid-area: description;
+      font-size: 16rem;
+      line-height: 20rem;
+      color: #828282;
+    }
+
+    .card--hobbies {
+      gap: 0;
+    }
+
+    .card--hobbies > h2 {
+      margin-bottom: 26px;
+      font-size: 24rem;
+      line-height: 29rem;
+      font-weight: 500;
+      color: #4F4F4F;
+    }
+
+    .hobbie__image {
+      margin-bottom: 26px;
+      max-height: 139px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .hobbie__name {
+      margin-bottom: 10px;
+      font-size: 18rem;
+      line-height: 22rem;
+      font-weight: 600;
+      color: #333333;
+    }
+
+    .hobbie__description {
+      font-size: 16rem;
+      line-height: 20rem;
+      color: #828282;
+    }
+
+    .projects {
+      container: projects / inline-size;
+    }
+
+    .card.card--project {
+      display: grid;
+      grid-template: 
+        "image tags"
+        "image title"
+        "image description"
+        "image actions";
+      gap: 0;
+      column-gap: 52px;
+    }
+
+    .card.card--project.filtered {
+      display: none;
+    }
+
+    .project__image {
+      grid-area: image;
+      width: 322px;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .project__tags {
+      grid-area: tags;
+      display: flex;
+      margin-bottom: 25px;
+      gap: 11px;
+      color: #4F4F4F;
+    }
+
+    .project__title {
+      grid-area: title;
+      margin-bottom: 18px;
+      font-size: 24rem;
+      line-height: 29rem;
+      font-weight: 500;
+      color: #333333;
+    }
+
+    .project__description {
+      grid-area: description;
+      margin-bottom: 51px;
+      font-size: 16rem;
+      line-height: 20rem;
+      color: #828282;
+    }
+
+    .project__actions {
+      grid-area: actions;
+      display: flex;
+      gap: 11px;
+    }
+
+    .project__actions button:not(.primary) {
+      border-color: #2F80ED;
+      color: #2F80ED;
+    }
+
+    .pagination {
+      display: flex;
+      align-self: flex-end;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .pagination > button {
+      display: grid;
+      place-content: center;
+      width: 36px;
+      height: 36px;
+      padding: 11px;
+      border-radius: 4px;
+    }
+
+    .blogs {
+      container: blogs / inline-size;
+    }
+
+    .card.card--blog {
+      display: grid;
+      grid-template: 
+        "type image image"
+        "title image image"
+        "description image image"
+        "extra . ." / auto auto 20px;
+      gap: 0;
+      column-gap: 75px;
+      padding: 41px 0 10px 20px;
+    }
+
+    .blog__type {
+      grid-area: type;
+      margin-bottom: 30px;
+      font-size: 16rem;
+      line-height: 20rem;
+      color: #E0E0E0;
+    }
+
+    .blog__title {
+      grid-area: title;
+      margin-bottom: 26px;
+      max-width: 178px;
+      font-size: 24rem;
+      line-height: 29rem;
+      font-weight: 500;
+      color: #333333;
+    }
+
+    .blog__description {
+      grid-area: description;
+      margin-bottom: 61px;
+      max-width: 318px;
+      font-size: 16rem;
+      line-height: 20rem;
+      color: #828282;
+    }
+
+    .blog__extra {
+      grid-area: extra;
+    }
+
+    .blog__image {
+      grid-area: image;
+      justify-self: end;
+      max-width: 444px;
+      height: 100%;
+      object-fit: cover;
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
+
+    .attribution {
+      margin-top: 135px;
+      font-size: 14rem;
+      line-height: 17rem;
+      color: #828282;
+      text-align: center;
+    }
+
+    .attribution a {
+      font-weight: bold;
+      text-decoration: underline;
+      color: #828282;
+    }
+
+    @container experiences (max-width: 280px) {
+      .experience {
+        grid-template:
+          "logo"
+          "range"
+          "position"
+          "description";
+      }
+
+      .experience__img {
+        margin-bottom: 16px;
+      }
+    }
+
+    @container projects (max-width: 645px) {
+      .card.card--project {
+        grid-template: 
+          "image"
+          "tags"
+          "title"
+          "description"
+          "actions";
+      }
+
+      .project__image {
+        margin-right: 0;
+        margin-bottom: 22px;
+        width: 100%;
+        min-width: 0;
+        height: 261px;
+      }
+
+      .project__tags {
+        margin-bottom: 22px;
+      }
+
+      .project__description {
+        margin-bottom: 41px;
+      }
+    }
+
+    @container blogs (max-width: 645px) {
+      .card.card--blog {
+        grid-template: 
+          "type . ."
+          "title image image"
+          "description description ."
+          "extra . ." / auto 60% 20px;
+        column-gap: 10px;
+      }
+
+      .blog__type {
+        margin-bottom: 0;
+      }
+
+      .blog__title {
+        margin-top: 21px;
+      }
+
+      .blog__image {
+        height: 321px;
+      }
+
+      .blog__description {
+        margin-top: 50px;
+        margin-bottom: 66px;
+        max-width: 100%;
+        text-align: justify;
+      }
+    }
+
+    @media (max-width: 767px) {
+      main {
+        grid-template-columns: auto;
+      }
+
+      .card.card--me img {
+        max-width: 100%;
+        max-height: 200px;
+      }      
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="flex-column gap-42">
+      <div class="card card--me">
+        <img src="./profile-pic.png" alt="Profile pic">
+        <hgroup class="flex-column gap-6">
+          <h1>José Guerra</h1>
+          <h2>Front-end developer</h2>
+        </hgroup>
+        <div class="contact flex-column">
+          <div class="flex flex-y-center">
+            <span class="material-icons">email</span>
+            <span>goodbyte@example.com</span>
+          </div>
+          <div class="flex flex-y-center">
+            <span class="material-icons">phone</span>
+            <span>(+603) 546 624 342</span>
+          </div>
+        </div>
+        <p>Self-motivated developer, who is willing to learn and create outstanding UI applications.</p>
+      </div>
+      <div class="card card--experiences">
+        <h2>Experiences</h2>
+        <div class="flex-column gap-36">
+          <div class="experience">
+            <img class="experience__img" src="./adidas.png" alt="Adidas logo">
+            <span class="experience__range">Feb 2017 - Current</span>
+            <span class="experience__position">Front-end developer</span>
+            <p class="experience__description">Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie.</p>
+          </div>
+          <div class="experience">
+            <img class="experience__img" src="./hm.png" alt="H&M logo">
+            <span class="experience__range">Aug 2016 - Feb 2018</span>
+            <span class="experience__position">Full-stack developer</span>
+            <p class="experience__description">Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie.</p>
+          </div>
+          <div class="experience">
+            <img class="experience__img" src="./nivea.png" alt="Nivea logo">
+            <span class="experience__range">Jun 2015 - Aug 2016</span>
+            <span class="experience__position">Junior front-end developer</span>
+            <p class="experience__description">Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card card--hobbies">
+        <h2>Hobbies</h2>
+        <div class="flex-column gap-36">
+          <div class="hobbie">
+            <img class="hobbie__image" src="./hobbie1.png" alt="">
+            <p class="hobbie__name">Gaming</p>
+            <p class="hobbie__description">Quisque feugiat malesuada molestie.</p>
+          </div>
+          <div class="hobbie">
+            <img class="hobbie__image" src="./hobbie2.png" alt="">
+            <p class="hobbie__name">Sleeping</p>
+            <p class="hobbie__description">Quisque feugiat malesuada molestie.</p>
+          </div>
+          <div class="hobbie">
+            <img class="hobbie__image" src="./hobbie3.png" alt="">
+            <p class="hobbie__name">Overthinking</p>
+            <p class="hobbie__description">Quisque feugiat malesuada molestie.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-column gap-48">
+      <div class="flex flex-wrap gap-32">
+        <div class="card card--skill">
+          <h2 class="uppercase">Front end</h2>
+          <div class="flex-column gap-17">
+            <div class="skill">
+              <span class="skill__name">React</span>
+              <meter id="disk_d" value="0.6">60%</meter>
+            </div>
+            <div class="skill">
+              <span class="skill__name">Javascript</span>
+              <meter id="disk_d" value="0.8">60%</meter>
+            </div>
+            <div class="skill">
+              <span class="skill__name">CSS</span>
+              <meter id="disk_d" value="0.9">60%</meter>
+            </div>
+            <div class="skill">
+              <span class="skill__name">Vue</span>
+              <meter id="disk_d" value="0.6">60%</meter>
+            </div>
+            <div class="skill">
+              <span class="skill__name">Redux</span>
+              <meter id="disk_d" value="0.8">60%</meter>
+            </div>
+            <div class="skill">
+              <span class="skill__name">React Native</span>
+              <meter id="disk_d" value="0.9">60%</meter>
+            </div>
+          </div>
+        </div>
+        <div class="card card--skill">
+          <h2 class="uppercase">Design</h2>
+          <div class="flex-column">
+            <div class="skill">
+              <span class="skill__name">Figma</span>
+              <meter id="disk_d" value="0.6">60%</meter>
+            </div>
+            <div class="skill">
+              <span class="skill__name">Photoshop</span>
+              <meter id="disk_d" value="0.8">60%</meter>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="projects flex-column gap-16">
+        <div class="card card--filter">
+          <p>Projects (3)</p>
+          <div class="tags">
+            <button>#HTML</button>
+            <button>#CSS</button>
+            <button>#Responsive</button>
+          </div>
+        </div>
+        <div class="card card--project">
+          <img class="project__image" src="./project1.png" alt="">
+          <div class="project__tags">
+            <span>#HTML</span>
+          </div>
+          <h2 class="project__title">Recipe Blog</h2>
+          <p class="project__description">In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. </p>
+          <div class="project__actions">
+            <button class="primary">Demo</button>
+            <button>Code</button>
+          </div>
+        </div>
+        <div class="card card--project">
+          <img class="project__image" src="./project2.png" alt="">
+          <div class="project__tags">
+            <span>#CSS</span>
+          </div>
+          <h2 class="project__title">My Gallery</h2>
+          <p class="project__description">In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. </p>
+          <div class="project__actions">
+            <button class="primary">Demo</button>
+            <button>Code</button>
+          </div>
+        </div>
+        <div class="card card--project">
+          <img class="project__image" src="./project3.png" alt="">
+          <div class="project__tags">
+            <span>#Responsive</span>
+          </div>
+          <h2 class="project__title">Checkout</h2>
+          <p class="project__description">In this project, I work with HTML and CSS to create a responsive page . The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie. </p>
+          <div class="project__actions">
+            <button class="primary">Demo</button>
+            <button>Code</button>
+          </div>
+        </div>
+        <div class="pagination">
+          <button>
+            <span class="material-icons">chevron_left</span>
+          </button>
+          <button class="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <span class="material-icons">more_horiz</span>
+          <button>10</button>
+          <button>
+            <span class="material-icons">chevron_right</span>
+          </button>
+        </div>
+      </div>
+      <div class="blogs flex-column gap-16">
+        <div class="card card--filter">
+          <p>Blogs (1)</p>
+        </div>
+        <div class="card card--blog">
+          <p class="blog__type">Blog</p>
+          <h2 class="blog__title">How to organize your CSS</h2>
+          <p class="blog__description">
+            In this article I tell the story about Proin eu justo sit amet lacus bibendum tincidunt. Vivamus non volutpat nisl, a luctus mi.<br><br>
+            Donec aliquam est dui, vel vestibulum diam sollicitudin id. Quisque feugiat malesuada molestie.
+          </p>
+          <img class="blog__image" src="./blog1.png" alt="">
+          <a class="blog__extra" href="#">dev.to</a>
+        </div>
+        <div class="pagination">
+          <button>
+            <span class="material-icons">chevron_left</span>
+          </button>
+          <button class="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <span class="material-icons">more_horiz</span>
+          <button>10</button>
+          <button>
+            <span class="material-icons">chevron_right</span>
+          </button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</p>
+  </footer>
+
+  <script>
+    {
+      const tagsEl = document.querySelectorAll('.projects .tags button');
+      const projectsEl = document.querySelectorAll('.card--project');
+
+      tagsEl.forEach((tagEl) => {
+        tagEl.addEventListener('click', () => {
+          tagEl.classList.toggle('active');
+          filterProjects();
+        });
+      });
+
+      function filterProjects() {
+        const activeTags = Array.from(tagsEl)
+          .filter((tagEl) => tagEl.classList.contains('active'))
+          .map((tagEl) => tagEl.textContent.replace('#', '').toLowerCase());
+
+        projectsEl.forEach((projectEl) => {
+          const projectTags = Array.from(projectEl.querySelectorAll('.project__tags > span'))
+            .map((tagEl) => tagEl.textContent.replace('#', '').toLowerCase());
+          
+          const hasTags = activeTags.every((val) => projectTags.includes(val));
+
+          projectEl.classList[hasTags ? 'remove' : 'add']('filtered');
+        });
+      }
+    }
+  </script>
+</body>
+</html>
