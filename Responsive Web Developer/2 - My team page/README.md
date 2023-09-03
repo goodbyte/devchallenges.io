@@ -1,5 +1,3 @@
-<!-- Please update value in the {}  -->
-
 <h1 align="center">My team  page</h1>
 
 <div align="center">
@@ -23,6 +21,7 @@
 ![screenshot](https://github.com/goodbyte/goodbyte/assets/5304800/c6ba8df1-8507-43d5-bf98-5331ae1ea60d)
 
 ### Build With
+
 - HTML
 - CSS
 

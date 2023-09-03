@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
+
+:root {
+  font-size: 6.25%;
+
+  --font-1: Montserrat, sans-serif;
+
+  --color-1: #4E5150;
+  --color-2: #333;
+  --color-3: #4F4F4F;
+  --color-4: #828282;
+  --color-5: #F2994A;
+  --color-6: #E0E0E0;
+  --color-7: #BDBDBD;
+  --color-8: #FFF;
+  --color-9: #F2F2F2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+  border: 0;
+  outline: none;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  margin-inline: auto;
+  padding-top: clamp(32px, 20.7324px + 3.0047vw, 64px);
+  padding-inline: clamp(12px, 7.7746px + 1.1268vw, 24px);
+  padding-bottom: 24px;
+  max-width: 1024px;
+  font: 600 10rem/1.2 var(--font-1);
+  font-size: clamp(10rem, 9.2958rem + 0.1878vw, 12rem);
+  color: var(--color-1)
+}
+
+h1,
+h4 {
+  font-weight: 600;
+}
+
+h1 {
+  margin-bottom: clamp(21px, 6.5634px + 3.8498vw, 62px);
+  font-size: clamp(24rem, 19.7746rem + 1.1268vw, 36rem);
+}
+
+h4 {
+  font-size: clamp(14rem, 12.5915rem + 0.3756vw, 18rem);
+}
+
+button {
+  padding: 17px 45px;
+  background: var(--color-5);
+  font-size: 16rem;
+  color: var(--color-8);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+input:not([type=checkbox]),
+select {
+  width: 100%;
+}
+
+select {
+  appearance: none;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  row-gap: clamp(5px, 4.2958px + 0.1878vw, 7px);
+}
+
+label[data-text]::before {
+  content: attr(data-text);
+  display: block;
+  color: var(--color-3);
+}
+
+#myForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: clamp(11px, 9.5915px + 0.3756vw, 15px);
+}
+
+.p-relative {
+  position: relative;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.invoice {
+  display: flex;
+  flex-direction: column;
+  row-gap: clamp(87px, 84.1831px + 0.7512vw, 95px);
+  margin-bottom: 39px;
+  padding-top: clamp(31px, 29.9437px + 0.2817vw, 34px);
+  padding-inline: clamp(27px, 25.9437px + 0.2817vw, 30px);
+  padding-bottom: 13px;
+  background: var(--color-9);
+  border-radius: 12px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  row-gap: clamp(29px, 27.9437px + 0.2817vw, 32px);
+}
+
+.item {
+  display: grid;
+  grid-template:
+    "image title"
+    "image price"
+    "image amount" 1fr / auto 1fr;
+  justify-items: start;
+  column-gap: 18px;
+  row-gap: 6px;
+}
+
+.item__img {
+  grid-area: image;
+  width: clamp(123rem, 119.1268rem + 1.0329vw, 134rem);
+  aspect-ratio: 123 / 125;
+  border-radius: 13px;
+}
+
+.item__name {
+  grid-area: title;
+  font-size: clamp(12rem, 10.5915rem + 0.3756vw, 16rem);
+}
+
+.item__price {
+  grid-area: price;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.item__price span:first-child {
+  font-size: clamp(14rem, 13.2958rem + 0.1878vw, 16rem);
+  color: var(--color-5);
+}
+
+.item__price span + span {
+  text-decoration: line-through;
+}
+
+.item__amount {
+  grid-area: amount;
+  align-self: flex-end;
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--color-4);
+  border-radius: 12px;
+}
+
+.item__amount input {
+  width: 64px;
+  background: transparent;
+  font-size: 16rem;
+  text-align: center;
+  color: var(--color-2);
+}
+
+.item__amount :first-child,
+.item__amount :last-child {
+  display: grid;
+  place-content: center;
+  width: 21px;
+  height: 21px;
+  background: var(--color-6);
+  font-size: 20rem;
+  color: var(--color-4);
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.total > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: clamp(14rem, 12.5915rem + 0.3756vw, 18rem);
+  color: var(--color-2);
+  border-top: 1px solid var(--color-7);
+}
+
+.shipping-header {
+  margin-top: clamp(30px, 25.4225px + 1.2207vw, 43px);
+}
+
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(23px, 20.1831px + 0.7512vw, 31px);
+}
+
+.expand-more {
+  position: absolute;
+  right: 12px;
+  background: var(--color-6);
+  border-radius: 4px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  padding-block: clamp(11px, 9.2394px + 0.4695vw, 16px);
+  padding-inline: clamp(10px, 9.2958px + 0.1878vw, 12px);
+  column-gap: clamp(11px, 9.2394px + 0.4695vw, 16px);
+  border: 1px solid var(--color-4);
+  border-radius: 12px;
+}
+
+.input:focus-within {
+  border-color: var(--color-5);
+}
+
+.input .material-icons {
+  color: var(--color-4);
+}
+
+.input input {
+  color: var(--color-2);
+}
+
+.input-checkbox {
+  display: flex;
+  margin-top: 8px;
+  column-gap: clamp(8px, 6.9437px + 0.2817vw, 11px);
+}
+
+button.submit {
+  align-self: flex-end;
+  margin-top: 8px;
+}
+
+.form-result {
+  font-size: 18rem;
+  font-weight: 500;
+  padding: 16px;
+  color: var(--color-8);
+  border-radius: 4px;
+}
+
+.form-result--ok {
+  background: #63b563;
+}
+
+.form-result--error {
+  background: #db5252;
+}
+
+.error::before {
+  content: '▲';
+  position: absolute;
+  top: -11px;
+  color: rgba(255, 0, 0, 0.1);
+}
+
+.error {
+  position: relative;
+  margin-top: 4px;
+  background: rgba(255, 0, 0, 0.1);
+  color: #CC3333;
+  font-size: 12rem;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.error--hidden {
+  display: none;
+}
+
+.attribution {
+  margin-top: clamp(95px, 72.4648px + 6.0094vw, 159px);
+  font-size: 14rem;
+  color: var(--color-7);
+  text-align: center;
+}
+
+.attribution a {
+  font-weight: 700;
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+@media (min-width: 768px) {
+  #myForm {
+    max-width: 465px;
+  }
+
+  .main {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    column-gap: 24px;
+  }
+
+  .invoice {
+    order: 1;
+    width: 383px;
+  }
+}

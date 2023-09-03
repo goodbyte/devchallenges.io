@@ -29,14 +29,3 @@
 ## Features
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/5ZnOYsSXM24JWnCsNFlt) was to build an application to complete the given user stories.
-
-Challenge: Create all the elements in the given designs and then create a portfolio with your own content. You can create your own layout. You can use React, Vue.js, or other libraries to create a reusable component, but it is not required. Don’t look at the existing solution. Fulfill user stories below:
-
-- I can see personal details
-- I can see skills
-- I can see projects
-- I can filter projects by tag
-- I can see hobbies or certificates
-- (optional): I can see experiences
-- (optional): I can see blogs
-- (optional): I can see projects on different pages

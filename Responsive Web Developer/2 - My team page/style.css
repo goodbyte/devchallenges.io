@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=PT+Serif:wght@400;700&family=Poppins:wght@400;600&display=swap');
+
+:root {
+  font-size: 6.25%;
+
+  --font-1: 'PT Serif', serif;
+  --font-2: 'Poppins', sans-serif;
+  --font-3: 'Montserrat', sans-serif;
+
+  --color-1: #000;
+  --color-2: #A9A9A9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+  border: 0;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  margin-inline: auto;
+  padding-top: clamp(71px, 57.2676px + 3.6620vw, 110px);
+  padding-inline: clamp(12px, 7.7746px + 1.1268vw, 24px);
+  padding-bottom: 24px;
+  max-width: 975px;
+  font: 400 18rem/1.5 var(--font-2);
+  font-size: clamp(14rem, 12.5915rem + 0.3756vw, 18rem);
+  color: var(--color-1);
+}
+
+h2 {
+  font: 700 36rem/1.3 var(--font-1);
+  letter-spacing:  -1.62rem;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: clamp(38px, 17.5775px + 5.4460vw, 96px);
+  column-gap: 20px;
+  row-gap: 38px;
+}
+
+.who-we-are {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  max-width: 439px;
+}
+
+.who-we-are h4 {
+  font-size: 18rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.who-we-are p {
+  max-width: 33ch;
+}
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: clamp(25px, 10.2113px + 3.9437vw, 67px);
+  row-gap: clamp(16px, 12.1268px + 1.0329vw, 27px);
+  place-items: start;
+}
+
+.card {
+  display: grid;
+  grid-template:
+    'image  job'
+    'name   job';
+  row-gap: clamp(10px, 8.2394px + 0.4695vw, 15px);
+  column-gap: clamp(6.28px, 4.9701px + 0.3493vw, 10px);
+}
+
+.card__image {
+  grid-area: image;
+  width: 100%;
+  min-width: 138px;
+  max-width: 238px;
+}
+
+.card__name {
+  grid-area: name;
+  font-weight: 600;
+}
+
+.card__job {
+  grid-area: job;
+  font: 400 14rem/1.3 var(--font-1);
+  font-size: clamp(10rem, 8.5915rem + 0.3756vw, 14rem);
+  text-transform: uppercase;
+  writing-mode: vertical-lr;
+}
+
+.attribution {
+  margin-top: clamp(134px, 140.6901px - 1.7840vw, 115px);
+  font: 500 14rem/1.2 var(--font-3);
+  color: var(--color-2);
+  text-align: center;
+}
+
+.attribution a {
+  font-weight: 700;
+}
+
+@media (min-width: 577px) {
+  .team > .card:nth-child(3n + 2) {
+    margin-top: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  .team {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .team > .card:nth-child(even) {
+    margin-top: 50px;
+  }
+}

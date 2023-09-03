@@ -2,302 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <title>Recipe page</title>
   <link rel="icon" href="devchallenges.png">
   <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
-
-  <title>Recipe page</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <style>
-    :root {
-      font-size: 6.25%;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      color: inherit;
-      border: 0;
-      vertical-align: baseline;
-    }
-
-    html,
-    body {
-      min-height: 100vh;
-      line-height: 1;
-    }
-
-    body {
-      max-width: 969px;
-      margin-inline: auto;
-      padding: 32px 11px 24px 11px;
-      font: 500 16rem/24rem Montserrat, sans-serif;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: 'Playfair Display', serif;
-      font-weight: bold;
-    }
-
-    h1 {
-      font-size: 24rem;
-      line-height: 32rem;
-    }
-
-    h2 {
-      font-size: 24rem;
-      line-height: 32rem;
-    }
-
-    h3 {
-      font-size: 18rem;
-      line-height: 24rem;
-    }
-
-    p {
-      font-size: 12rem;
-      line-height: 15rem;
-    }
-
-    input[type="checkbox"] + p {
-      font-size: 14rem;
-      line-height: 25rem;
-    }
-
-    ol {
-      counter-reset: cnt;
-      list-style: none;
-    }
-
-    ol li {
-      counter-increment: cnt;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    ol li::before {
-      content: counter(cnt);
-      display: block;
-      min-width: 36px;
-      min-height: 36px;
-      background-color: #F2994A;
-      font: 700 24rem/24rem 'Playfair Display', serif;
-      color: white;
-      text-align: center;
-      border-radius: 6px;
-    }
-
-    ol p {
-      font-size: 16rem;
-      line-height: 20rem;
-    }
-
-    section:not(:last-child) {
-      margin-bottom: 30px;
-    }
-
-    label {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    label input {
-      margin-top: 5px;
-    }
-
-    .flex,
-    .flex-column {
-      display: flex;
-      gap: 12px;
-    }
-
-    .flex {
-      align-items: flex-start;
-    }
-
-    .flex-column {
-      flex-direction: column;
-    }
-
-    .wrap {
-      flex-wrap: wrap;
-    }
-
-    .flex.x-space-between {
-      justify-content: space-between;
-    }
-
-    .flex-column.x-stretch {
-      align-items: stretch;
-    }
-
-    .gap-20 {
-      gap: 20px;
-    }
-
-    .hero__img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-bottom: 24px;
-    }
-
-    .info {
-      display: grid;
-      grid-template:
-        "icon title"
-        "icon text" / auto 1fr;
-      align-items: center;
-      column-gap: 6px;
-    }
-
-    .info:first-child {
-      flex-basis: 100%;
-    }
-
-    .info:first-child :is(.info__icon, .info__text) {
-      color: #F2994A;
-    }
-
-    .info__icon {
-      grid-area: icon;
-    }
-
-    .info__title {
-      grid-area: title;
-      font-size: 8rem;
-      line-height: 10rem;
-      font-weight: bold;
-      color: #BDBDBD;
-      text-transform: uppercase;
-    }
-
-    .info__text {
-      grid-area: text;
-      font-size: 10rem;
-      line-height: 12rem;
-    }
-
-    .subtitle {
-      margin-bottom: 8px;
-      font-size: 16rem;
-      line-height: 21rem;
-      font-weight: 400;
-      font-style: italic;
-    }
-
-    .attribution {
-      margin-top: 129px;
-      font-size: 14rem;
-      line-height: 17rem;
-      color: #828282;
-      text-align: center;
-    }
-
-    .attribution a {
-      font-weight: bold;
-    }
-
-    @media (min-width: 768px) {
-      h1 {
-        font-size: 48rem;
-        line-height: 64rem;
-      }
-
-      h2,
-      h3 {
-        font-size: 24rem;
-        line-height: 32rem;
-      }
-
-      p {
-        font-size: 14rem;
-        line-height: 17rem;
-      }
-
-      input[type="checkbox"] + p {
-        font-size: 16rem;
-      }
-
-      .md-flex {
-        display: flex;
-        flex-direction: row;
-      }
-
-      .md-flex.md-y-flex-start {
-        align-items: flex-start;
-      }
-
-      .md-gap-150 {
-        gap: 150px;
-      }
-
-      .hero__img {
-        margin-top: 43px;
-        margin-bottom: 48px;
-      }
-
-      .subtitle {
-        font-size: 18rem;
-        line-height: 24rem;
-      }
-
-      .info__section {
-        min-width: 216px;
-        padding: 50px 43px;
-        flex-direction: column;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        gap: 43px;
-        order: 1;
-        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-        border-radius: 12px;
-      }
-
-      .info {
-        column-gap: 14px;
-        row-gap: 4px;
-      }
-
-      .info:first-child {
-        flex-basis: 0;
-      }
-
-      .info__title {
-        font-size: 10rem;
-        line-height: 12rem;
-      }
-
-      .info__text {
-        font-size: 14rem;
-        line-height: 17rem;
-      }
-  }
-  </style>
+  <link rel="stylesheet" href="./style.css">
 </head>
-<body class="flex-column x-stretch">
-  <h1>Classic Cheesecake Recipe</h1>
-  <div class="flex">
-    <img src="./6dots.svg" alt="Dots" style="margin-top: 4px;">
-    <p style="max-width: 592px; font-style: italic;">Look no further for a creamy and ultra smooth classic cheesecake recipe! Paired with a buttery graham cracker crust, no one can deny its simple decadence. For the best results, bake in a water bath.</p>
+<body>
+  <div class="hero">
+    <h1 class="mb-12">Classic Cheesecake Recipe</h1>
+    <div class="quote flex">
+      <img src="./6dots.svg" alt="Dots" style="margin-top: 4px;">
+      <p>Look no further for a creamy and ultra smooth classic cheesecake recipe! Paired with a buttery graham cracker crust, no one can deny its simple decadence. For the best results, bake in a water bath.</p>
+    </div>
+    <img class="hero__img" src="./photo1.png" alt="Cake">
   </div>
-  <img class="hero__img" src="./photo1.png" alt="Cake">
-  <main class="flex-column md-flex md-y-flex-start md-gap-150">
-    <section class="info__section flex x-space-between wrap gap-20">
+  <div class="md-flex md-x-space-between md-y-flex-start">
+    <div class="info__section flex wrap x-space-between gap-21 mb-30">
       <div class="info">
         <span class="info__icon material-icons">restaurant_menu</span>
         <span class="info__title">Yields</span>
@@ -318,40 +40,57 @@
         <span class="info__title">Total Time</span>
         <span class="info__text">7,75 hours</span>
       </div>
-    </section class="flex x-space-between wrap gap-20">
-    <section class="flex-column">
-      <h3>Ingredients</h3>
-      <h3 class="subtitle">Graham Cracker Crust</h3>
-      <label>
-        <input type="checkbox">
-        <p>four 8-ounce blocks (904g) full-fat <strong>cream cheese</strong>, softened to room temperature</p>
-      </label>
-      <label>
-        <input type="checkbox">
-        <p>1 cup (200g) <strong>granulated sugar</strong></p>
-      </label>
-      <label>
-        <input type="checkbox">
-        <p>1 cup (240g) full-fat <strong>sour cream</strong>, at room temperature</p>
-      </label>
-      <label>
-        <input type="checkbox">
-        <p>1 teaspoon <strong>pure vanilla extract</strong></p>
-      </label>
-      <label>
-        <input type="checkbox">
-        <p>2 teaspoons <strong>fresh lemon juice</strong> (optional, but recommended)</p>
-      </label>
-      <label>
-        <input type="checkbox">
-        <p>3 large <strong>eggs</strong>, at room temperature</p>
-      </label>
-      <label>
-        <input type="checkbox">
-        <p>topping suggestions: <em>salted caramel, lemon curd, strawberry topping, chocolate ganache, red wine chocolate ganache, fresh fruit, whipped cream, or raspberry sauce</em> (recipe in notes) </p>
-      </label>
-      <h2>Instructions</h2>
-      <ol class="flex-column">
+    </div>
+    <div class="md-max-width-540">
+      <h3 class="ingredients">Ingredients</h3>
+      <div class="mb-42">
+        <h4 class="ingredients__subtitle">Graham Cracker Crust</h4>
+        <div class="flex-column">
+          <label>
+            <input type="checkbox">
+            <p>1 and 1/2 cups (150g) <strong>graham cracker crumbs</strong> (about 10 full sheet graham crackers)</p>
+          </label>
+          <label>
+            <input type="checkbox">
+            <p>5 Tablespoons (70g) <strong>unsalted butter</strong>, melted</p>
+          </label>
+          <label>
+            <input type="checkbox">
+            <p>1/4 cup (50g) <strong>granulated sugar</strong></p>
+          </label>
+        </div>
+      </div>
+      <div class="mb-30">
+        <h4 class="ingredients__subtitle">Cheesecake</h4>
+        <div class="flex-column">
+          <label>
+            <input type="checkbox">
+            <p>four 8-ounce blocks (904g) full-fat <strong>cream cheese</strong>, softened to room temperature</p>
+          </label>
+          <label>
+            <input type="checkbox">
+            <p>1 cup (200g) <strong>granulated sugar</strong></p>
+          </label>
+          <label>
+            <input type="checkbox">
+            <p>1 cup (240g) full-fat <strong>sour cream</strong>, at room temperature</p>
+          </label>
+          <label>
+            <input type="checkbox">
+            <p>2 teaspoons <strong>fresh lemon juice</strong> (optional, but recommended)</p>
+          </label>
+          <label>
+            <input type="checkbox">
+            <p>3 large <strong>eggs</strong>, at room temperature</p>
+          </label>
+          <label>
+            <input type="checkbox">
+            <p>topping suggestions: <i>salted caramel, lemon curd, strawberry topping, chocolate ganache, red wine chocolate ganache, fresh fruit, whipped cream, or raspberry sauce (recipe in notes) </i></p>
+          </label>
+        </div>
+      </div>
+      <h2 class="mb-30">Instructions</h2>
+      <ol class="flex-column row-gap-30">
         <li>
           <p>Adjust the oven rack to the lower-middle position and preheat oven to 350°F (177°C).</p>
         </li>
@@ -373,10 +112,10 @@
         <li>
           <p>Serve cheesecake with desired toppings. Cover and store leftover cheesecake in the refrigerator for up to 5 days.</p>
         </li>
-        <p style="margin-top: 57px; color: #BDBDBD;">Source:<br><a href="https://sallysbakingaddiction.com/classic-cheesecake/" style="text-decoration: none;">https://sallysbakingaddiction.com/classic-cheesecake/</a></p>
       </ol>
-    </section>
-  </main>
-  <p class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</p>
+      <p class="source">Source:<br><a href="https://sallysbakingaddiction.com/classic-cheesecake/" style="text-decoration: none;">https://sallysbakingaddiction.com/classic-cheesecake/</a></p>
+    </div>
+  </div>
+  <div class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</div>
 </body>
 </html>

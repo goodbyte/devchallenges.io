@@ -1,5 +1,3 @@
-<!-- Please update value in the {}  -->
-
 <h1 align="center">404 Not Found</h1>
 
 <div align="center">
@@ -23,6 +21,7 @@
 ![screenshot](https://github.com/goodbyte/blog/assets/5304800/6446903e-49f5-442f-9f73-b09d9eaa4e4a)
 
 ### Build With
+
 - HTML
 - CSS
 

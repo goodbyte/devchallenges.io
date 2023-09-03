@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@700&family=Montserrat:wght@500;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  font-size: 6.25%;
+
+  --font-1: Inconsolata, sans-serif;
+  --font-2: 'Space Mono', sans-serif;
+  --font-3: Montserrat, sans-serif;
+
+  --color-1: #FFF;
+  --color-2: #333;
+  --color-3: #4F4F4F;
+  --color-4: #BDBDBD;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+  border: 0;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1286px;
+  padding: 24px;
+  padding-top: clamp(20px, 12.9831px + 1.8762vw, 40px);
+  margin-inline: auto;
+  font: 400 24rem/1.5 var(--font-2);
+  font-size: clamp(18rem, 15.8949rem + 0.5629vw, 24rem);
+  letter-spacing: -0.84rem;
+  color: var(--color-2);
+}
+
+button {
+  padding: 24px 43px;
+  background: var(--color-2);
+  font-size: 14rem;
+  font-weight: 700;
+  letter-spacing: -0.49rem;
+  color: var(--color-1);
+  text-transform: uppercase;
+}
+
+img {
+  max-width: 100%;
+}
+
+.error {
+  margin-bottom: 64px;
+  font: 700 24rem/1 var(--font-1);
+  letter-spacing: -1.92rem;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 60px;
+}
+
+.hero .hero__image {
+  flex: 1 1 0;
+  min-width: 287px;
+  max-width: 540px;
+  max-height: 447px;
+}
+
+.hero .hero__content {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 586px;
+}
+
+.hero .hero__content h1 {
+  margin-bottom: clamp(30px, 27.8949px + 0.5629vw, 36px);
+  max-width: 15ch;
+  font-size: clamp(48rem, 42.3865rem + 1.5009vw, 64rem);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -2.24rem;
+}
+
+.hero .hero__content p {
+  margin-bottom: clamp(66px, 66.7017px - 0.1876vw, 64px);;
+  max-width: 381px;
+}
+
+.attribution {
+  margin-top: 114px;
+  font: 500 14rem/1.2 var(--font-3);
+  color: var(--color-4);
+  text-align: center;
+}
+
+.attribution a {
+  font-weight: 700;
+}
+
+@media (max-width: 670px) {
+  .hero {
+    justify-content: center;
+  }
+
+  .hero .hero__image {
+    padding-inline: 20px;
+  }
+}
