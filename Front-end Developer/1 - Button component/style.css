@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Poppins:wght@500;600&family=Ubuntu+Mono&display=swap');
+
+:root {
+  font-size: 6.25%;
+
+  --font-1: 'Poppins', sans-serif;
+  --font-2: 'Ubuntu Mono', monospace;
+  --font-3: 'Montserrat', sans-serif;
+
+  --color-1: #FAFBFD;
+  --color-2: #F7542E;
+  --color-3: #090F31;
+  --color-4: #9E9E9E;
+  --color-5: #4F4F4F;
+  --color-6: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+  border: 0;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  font: 500 16rem/1.5 var(--font-1);
+}
+
+h2 {
+  margin-bottom: 26px;
+  font-size: 24rem;
+  font-weight: 500;
+  color: var(--color-5);
+}
+
+ul {
+  list-style: none;
+}
+
+code {
+  font: 400 14rem/1 var(--font-2);
+  color: var(--color-5);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 237px 1fr;
+  height: 100vh;
+}
+
+.menu {
+  padding: 47px 57px;
+  background: var(--color-1);
+}
+
+.menu ul {
+  font-size: 14rem;
+  color: var(--color-4);
+}
+
+.menu li {
+  padding: 12px 0;
+}
+
+.menu li.active {
+  color: var(--color-3);
+}
+
+.brand {
+  margin-bottom: 122px;
+  font-size: 13rem;
+  font-weight: 600;
+  color: var(--color-3);
+}
+
+.brand > :first-child {
+  color: var(--color-2);
+}
+
+.content {
+  padding: 53px 83px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+.buttons > div {
+  display: flex;
+  gap: 25px;
+}
+
+.buttons > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 200px;
+}
+
+.react-btn {
+  --bg: #E0E0E0;
+  padding: 8px 16px;
+  background: var(--bg);
+  color: #3F3F3F;
+  border: 1px solid var(--bg);
+  border-radius: 6px;
+  box-shadow: 0px 2px 3px #33333333;
+}
+
+.react-btn:not([disabled]):is(:hover, :focus) {
+  --bg: #AEAEAE;
+}
+
+.react-btn:is(.outline, .text) {
+  --bg: #3D5AFE;
+  background: transparent;
+  color: var(--bg);
+  box-shadow: none;
+}
+
+.react-btn.text {
+  border-color: transparent;
+}
+
+.react-btn:is(.outline, .text):not([disabled]):is(:hover, :focus) {
+  --bg: #3D5AFE;
+  background: #2962ff1a;
+}
+
+.react-btn.disable-shadow {
+  box-shadow: none;
+}
+
+.react-btn[disabled] {
+  color: #9E9E9E;
+  cursor: not-allowed;
+}
+
+.react-btn.sm {
+  padding: 6px 12px;
+}
+
+.react-btn.md {
+  padding: 8px 16px;
+}
+
+.react-btn.lg {
+  padding: 11px 22px;
+}
+
+.react-btn:is(.primary, .secondary, .danger) {
+  color: #FFF;
+}
+
+.react-btn.primary {
+  --bg: #2962FF;
+}
+
+.react-btn.primary:not([disabled]):is(:hover, :focus) {
+  --bg: #0039CB;
+}
+
+.react-btn.secondary {
+  --bg: #455A64;
+}
+
+.react-btn.secondary:not([disabled]):is(:hover, :focus) {
+  --bg: #1C313A;
+}
+
+.react-btn.danger {
+  --bg: #D32F2F;
+}
+
+.react-btn.danger:not([disabled]):is(:hover, :focus) {
+  --bg: #9A0007;
+}
+
+.attribution {
+  font: 500 14rem/1.2 var(--font-3);
+  color: #A9A9A9;
+  margin-top: 98px;
+}
+
+.attribution a {
+  font-weight: 700;
+}

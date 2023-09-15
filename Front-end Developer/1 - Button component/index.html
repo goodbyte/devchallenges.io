@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button component</title>
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <div class="menu">
+      <div class="brand"><span>Dev</span>challenges</div>
+      <ul>
+        <li>Colors</li>
+        <li>Typography</li>
+        <li>Spaces</li>
+        <li>Buttons</li>
+        <li class="active">Inputs</li>
+        <li>Grid</li>
+      </ul>
+    </div>
+    <div class="content">
+      <h2>Buttons</h2>
+      <div id="react-root" class="buttons"></div>
+      <div class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</div>
+    </div>
+  </div>
+
+  <script type="text/babel">
+    function MyApp() {
+      return (
+        <>
+          <div>
+            <div>
+              <code>&lt;Button /&gt;</code>
+              <Button />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Button variant="outline" /&gt;</code>
+              <Button variant="outline" />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Button variant="text" /&gt;</code>
+              <Button variant="text" />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Button disableShadow /&gt;</code>
+              <Button color="primary" disableShadow />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Button disabled /&gt;</code>
+              <Button disabled>Disabled</Button>
+            </div>
+            <div>
+              <code>&lt;Button variant="text" disabled /&gt;</code>
+              <Button variant="text" disabled>Disabled</Button>
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Button startIcon="local_grocery_store" /&gt;</code>
+              <Button color="primary" startIcon="add_shopping_cart" />
+            </div>
+            <div>
+              <code>&lt;Button endIcon="local_grocery_store" /&gt;</code>
+              <Button color="primary" endIcon="add_shopping_cart" />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Button size="sm" /&gt;</code>
+              <Button color="primary" size="sm" />
+            </div>
+            <div>
+              <code>&lt;Button size="md" /&gt;</code>
+              <Button color="primary" size="md" />
+            </div>
+            <div>
+              <code>&lt;Button size="lg" /&gt;</code>
+              <Button color="primary" size="lg" />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Button color="default" /&gt;</code>
+              <Button color="default" />
+            </div>
+            <div>
+              <code>&lt;Button color="primary" /&gt;</code>
+              <Button color="primary" />
+            </div>
+            <div>
+              <code>&lt;Button color="secondary" /&gt;</code>
+              <Button color="secondary">Secondary</Button>
+            </div>
+            <div>
+              <code>&lt;Button color="danger" /&gt;</code>
+              <Button color="danger">Danger</Button>
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    function Button(props) {
+      const {
+        children,
+        variant,
+        disableShadow,
+        disabled: disableAttr,
+        startIcon,
+        endIcon,
+        size,
+        color
+      } = props;
+
+      const [disabled, setDisabled] = React.useState(disableAttr);
+
+      let classes = [
+        'react-btn',
+        variant,
+        disableShadow && 'disable-shadow',
+        size,
+        color
+      ].filter((i) => i).join(' ');
+
+      const style = {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '4px'
+      };
+
+      const icon = (name) => <span className="material-icons" style={{fontSize: '1.2em'}}>{name}</span>;
+
+      return (
+        <button className={classes} style={style} disabled={disabled}>
+          {startIcon && icon(startIcon)}
+          {children || 'Default'}
+          {endIcon && icon(endIcon)}
+        </button>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('react-root'));
+    root.render(<MyApp />);
+  </script>
+</body>
+</html>
