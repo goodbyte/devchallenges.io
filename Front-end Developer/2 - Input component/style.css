@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Poppins:wght@500;600&family=Ubuntu+Mono&display=swap');
+
+:root {
+  font-size: 6.25%;
+
+  --font-1: 'Poppins', sans-serif;
+  --font-2: 'Ubuntu Mono', monospace;
+  --font-3: 'Montserrat', sans-serif;
+
+  --color-1: #FAFBFD;
+  --color-2: #F7542E;
+  --color-3: #090F31;
+  --color-4: #9E9E9E;
+  --color-5: #4F4F4F;
+  --color-6: #333333;
+  --color-7: #828282;
+  --color-8: #2962FF;
+  --color-9: #D32F2F;
+  --color-10: #F2F2F2;
+  --color-11: #E0E0E0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+  border: 0;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  font: 500 16rem/1.5 var(--font-1);
+  color: var(--color-6);
+}
+
+h2 {
+  margin-bottom: 65px;
+  font-size: 24rem;
+  font-weight: 500;
+  color: var(--color-5);
+}
+
+ul {
+  list-style: none;
+}
+
+code {
+  font: 400 14rem/1 var(--font-2);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 237px 1fr;
+  height: 100vh;
+}
+
+.menu {
+  padding: 43px 48px;
+  background: var(--color-1);
+}
+
+.menu ul {
+  font-size: 14rem;
+  color: var(--color-4);
+}
+
+.menu li {
+  padding: 15px 0;
+}
+
+.menu li.active {
+  color: var(--color-3);
+}
+
+.brand {
+  margin-bottom: 79px;
+  font-size: 13rem;
+  font-weight: 600;
+  color: var(--color-3);
+}
+
+.brand > :first-child {
+  color: var(--color-2);
+}
+
+.content {
+  padding: 30px 81px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+}
+
+.inputs > div {
+  display: flex;
+  gap: 70px;
+}
+
+.inputs > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 400px;
+}
+
+.form-control {
+  --bg: var(--color-8);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-control[disabled] * {
+  cursor: not-allowed;
+}
+
+.form-control:focus-within :is(.form-control__label) {
+  color: var(--bg);
+}
+
+.form-control:focus-within :is(.form-control__input-wrapper) {
+  border-color: var(--bg);
+}
+
+.form-control.full-width {
+  width: 100%;
+}
+
+.form-control__label {
+  font-size: 12rem;
+  font-weight: 400;
+}
+
+.form-control__input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 12px;
+  border: 1px solid var(--color-7);
+  border-radius: 8px;
+}
+
+.form-control__input {
+  width: 100%;
+}
+
+.form-control.form-control--error {
+  --bg: var(--color-9);
+}
+
+.form-control.form-control--error :is(.form-control__label, .form-control__helper) {
+  color: var(--bg);
+}
+
+.form-control.form-control--error .form-control__input-wrapper {
+  border-color: var(--bg);
+}
+
+.form-control:hover {
+  --bg: var(--color-6);
+}
+
+.form-control:hover :is(.form-control__input-wrapper) {
+  border-color: var(--color-6);
+}
+
+.form-control[disabled] .form-control__input-wrapper {
+  background: var(--color-10);
+  border-color: var(--color-11);
+}
+
+.form-control__helper {
+  font-size: 10rem;
+  color: var(--color-7);
+}
+
+.form-control.sm .form-control__input-wrapper {
+  padding: 10px 12px;
+}
+
+.form-control.md .form-control__input-wrapper {
+  padding: 18px 12px;
+}
+
+.attribution {
+  margin-top: 22px;
+  font: 500 14rem/1.2 var(--font-3);
+  color: var(--color-4);
+}
+
+.attribution a {
+  font-weight: 700;
+}

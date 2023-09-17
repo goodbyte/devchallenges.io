@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input component</title>
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <div class="menu">
+      <div class="brand"><span>Dev</span>challenges</div>
+      <ul>
+        <li>Typography</li>
+        <li>Grid</li>
+        <li>Buttons</li>
+        <li class="active">Inputs</li>
+      </ul>
+    </div>
+    <div class="content">
+      <h2>Inputs</h2>
+      <div id="react-root" class="inputs"></div>
+      <div class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</div>
+    </div>
+  </div>
+
+  <script type="text/babel">
+    function MyApp() {
+      return (
+        <>
+          <div>
+            <div>
+              <code>&lt;Input /&gt;</code>
+              <Input />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Input error /&gt;</code>
+              <Input error />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Input disabled /&gt;</code>
+              <Input disabled />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Input helperText="Some interesting text" /&gt;</code>
+              <Input helperText="Some interesting text" />
+            </div>
+            <div>
+              <code>&lt;Input helperText="Some interesting text" error /&gt;</code>
+              <Input helperText="Some interesting text" error />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Input startIcon="call" /&gt;</code>
+              <Input startIcon="call">Disabled</Input>
+            </div>
+            <div>
+              <code>&lt;Input endIcon="lock" /&gt;</code>
+              <Input endIcon="lock">Disabled</Input>
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Input value="text" /&gt;</code>
+              <Input value="text" />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Input size="sm" /&gt;</code>
+              <Input size="sm" />
+            </div>
+            <div>
+              <code>&lt;Input size="md" /&gt;</code>
+              <Input size="md" />
+            </div>
+          </div>
+          <div>
+            <div style={{flexGrow: 1}}>
+              <code>&lt;Input fullWidth /&gt;</code>
+              <Input fullWidth />
+            </div>
+          </div>
+          <div>
+            <div>
+              <code>&lt;Input multiline row="4" /&gt;</code>
+              <Input multiline row="4" />
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    const Input = React.forwardRef((props, ref) => {
+      const {
+        error,
+        disabled: disableAttr,
+        helperText,
+        startIcon,
+        endIcon,
+        value,
+        size,
+        fullWidth,
+        multiline,
+        row,
+      } = props;
+
+      const [disabled, setDisabled] = React.useState(disableAttr);
+
+      let classes = [
+        'form-control',
+        error && 'form-control--error',
+        size,
+        fullWidth && 'full-width',
+      ].filter((i) => i).join(' ');
+
+      const style = {
+        border: 'none',
+        outline: 'none',
+      };
+
+      const icon = (name) => <span className="material-icons" style={{fontSize: '1.3em', color: '#828282'}}>{name}</span>;
+
+      return (
+        <div className={classes} disabled={disabled}>
+          <div className="form-control__label">Label</div>
+          <div className="form-control__input-wrapper">
+            {startIcon && icon(startIcon)}
+            {
+              multiline ?
+                <textarea ref={ref} style={style} rows={row || 4} disabled={disabled} placeholder="Placeholder">{value}</textarea> :
+                <input ref={ref} style={style} value={value} disabled={disabled} placeholder="Placeholder" onChange={() => {}} />
+            }
+            {endIcon && icon(endIcon)}
+          </div>
+          {helperText && <div className="form-control__helper">{helperText}</div>}
+        </div>
+      );
+    });
+
+    const root = ReactDOM.createRoot(document.getElementById('react-root'));
+    root.render(<MyApp />);
+  </script>
+</body>
+</html>

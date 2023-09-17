@@ -13,6 +13,17 @@
   --color-4: #9E9E9E;
   --color-5: #4F4F4F;
   --color-6: #333333;
+  --color-7: #E0E0E0;
+  --color-8: #AEAEAE;
+  --color-9: #3D5AFE;
+  --color-10: #FFFFFF;
+  --color-11: #2962FF;
+  --color-12: #0039CB;
+  --color-13: #455A64;
+  --color-14: #1C313A;
+  --color-15: #D32F2F;
+  --color-16: #9A0007;
+  --color-17: #A9A9A9;
 }
 
 * {
@@ -108,7 +119,7 @@ code {
 }
 
 .react-btn {
-  --bg: #E0E0E0;
+  --bg: var(--color-7);
   padding: 8px 16px;
   background: var(--bg);
   color: #3F3F3F;
@@ -118,11 +129,11 @@ code {
 }
 
 .react-btn:not([disabled]):is(:hover, :focus) {
-  --bg: #AEAEAE;
+  --bg: var(--color-8);
 }
 
 .react-btn:is(.outline, .text) {
-  --bg: #3D5AFE;
+  --bg: var(--color-9);
   background: transparent;
   color: var(--bg);
   box-shadow: none;
@@ -133,7 +144,7 @@ code {
 }
 
 .react-btn:is(.outline, .text):not([disabled]):is(:hover, :focus) {
-  --bg: #3D5AFE;
+  --bg: var(--color-9);
   background: #2962ff1a;
 }
 
@@ -142,7 +153,7 @@ code {
 }
 
 .react-btn[disabled] {
-  color: #9E9E9E;
+  color: var(--color-4);
   cursor: not-allowed;
 }
 
@@ -159,37 +170,37 @@ code {
 }
 
 .react-btn:is(.primary, .secondary, .danger) {
-  color: #FFF;
+  color: var(--color-10);
 }
 
 .react-btn.primary {
-  --bg: #2962FF;
+  --bg: var(--color-11);
 }
 
 .react-btn.primary:not([disabled]):is(:hover, :focus) {
-  --bg: #0039CB;
+  --bg: var(--color-12);
 }
 
 .react-btn.secondary {
-  --bg: #455A64;
+  --bg: var(--color-13);
 }
 
 .react-btn.secondary:not([disabled]):is(:hover, :focus) {
-  --bg: #1C313A;
+  --bg: var(--color-14);
 }
 
 .react-btn.danger {
-  --bg: #D32F2F;
+  --bg: var(--color-15);
 }
 
 .react-btn.danger:not([disabled]):is(:hover, :focus) {
-  --bg: #9A0007;
+  --bg: var(--color-16);
 }
 
 .attribution {
-  font: 500 14rem/1.2 var(--font-3);
-  color: #A9A9A9;
   margin-top: 98px;
+  font: 500 14rem/1.2 var(--font-3);
+  color: var(--color-17);
 }
 
 .attribution a {

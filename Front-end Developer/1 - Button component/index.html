@@ -116,7 +116,7 @@
       );
     }
 
-    function Button(props) {
+    const Button = React.forwardRef((props, ref) => {
       const {
         children,
         variant,
@@ -147,13 +147,13 @@
       const icon = (name) => <span className="material-icons" style={{fontSize: '1.2em'}}>{name}</span>;
 
       return (
-        <button className={classes} style={style} disabled={disabled}>
+        <button ref={ref} className={classes} style={style} disabled={disabled}>
           {startIcon && icon(startIcon)}
           {children || 'Default'}
           {endIcon && icon(endIcon)}
         </button>
       );
-    }
+    });
 
     const root = ReactDOM.createRoot(document.getElementById('react-root'));
     root.render(<MyApp />);
