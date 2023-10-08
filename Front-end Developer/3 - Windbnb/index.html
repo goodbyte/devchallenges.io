@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windbnb</title>
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./stays.js"></script>
+</head>
+<body>
+  <div id="react-root"></div>
+
+  <script type="text/babel">
+    function MyApp() {
+      const [stays, setStays] = React.useState(0);
+      const [isLoading, setLoading] = React.useState(false);
+      const [filter, setFilter] = React.useState({
+        query: '',
+        meta: {
+          guests: 0,
+        },
+      });
+
+      return (
+        <>
+          <header>
+            <img src="./logo.svg" alt="Brand" />
+            <SearchBox onSearch={setFilter} />
+          </header>
+          <main>
+            <div className="stays-header">
+              <h2>Stays in Findland</h2>
+              {!isLoading && <span>{stays > 12 ? '12+' : stays} stays</span>}
+            </div>
+            <StaysList filter={filter} onLoading={setLoading} onStaysCountChanged={setStays} />
+          </main>
+          <footer>
+            <div className="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</div>
+          </footer>
+        </>
+      );
+    }
+
+    function useDebounce(value, delay) {
+      const [debounceValue, setDebounceValue] = React.useState(value);
+
+      React.useEffect(() => {
+        const handler = setTimeout(() => setDebounceValue(value), delay);
+
+        return () => clearTimeout(handler);
+      }, [value, delay]);
+
+      return debounceValue;
+    }
+
+    function SearchBox({onSearch}) {
+      const [isExpanded, setExpanded] = React.useState(false);
+      const [location, setLocation] = React.useState('Helsinki, Finland');
+      const [isLocationAvailable, setLocationAvailable] = React.useState(false);
+      const [isLocationsVisible, setLocationsVisible] = React.useState(false);
+      const [guests, setGuests] = React.useState({adults: 0, children: 0});
+      const [isGuestsVisible, setGuestsVisible] = React.useState(false);
+      const [locationsList, setLocationsList] = React.useState({});
+      const debounceLocation = useDebounce(location, 250);
+      const ref = React.useRef(null);
+
+      const guestsCount = Number(guests.adults) + Number(guests.children);
+
+      let className = 'search-box-modal';
+      if (isExpanded) className += ' active';
+
+      // Creates available locations from Stays array
+      React.useEffect(() => {
+        setLocationsList(
+          stays.reduce((acc, {city, country}) => {
+            acc[country] instanceof Set ?
+              acc[country].add(city) :
+              acc[country] = new Set([city]);
+
+            return acc;
+          }, {})
+        );
+      }, []);
+      //
+
+      React.useEffect(() => {
+        if (isLocationAvailable) setLocationsVisible(true);
+      }, [debounceLocation]);
+
+      function handleLocationSelected(location) {
+        setLocationAvailable(false);
+        setLocationsVisible(false);
+        setLocation(location);
+      }
+
+      function handleGuestsFocus() {
+        setLocationsVisible(false);
+        setGuestsVisible(true);
+      }
+
+      function openDrawer(e) {
+        setExpanded(true);
+      }
+
+      function closeDrawer(e) {
+        if (isExpanded && (e.target === ref.current)) setExpanded(false);
+      }
+
+      function handleSearchButton() {
+        onSearch({
+          query: debounceLocation, 
+          meta: {
+            guests: guestsCount,
+          },
+        });
+
+        setExpanded(false);
+      }
+
+      return (
+        <div className={className} ref={ref} onFocus={openDrawer} onClick={closeDrawer}>
+          <div className="search-box-content">
+            <div className="search-box-wrapper">
+              <div className="search-box__title">Edit your search</div>
+              <div className="search-box">
+                <div>
+                  <InputText
+                    label="Location"
+                    placeholder="Add location"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    onKeyUp={() => setLocationAvailable(true)}
+                    onFocus={() => setGuestsVisible(false)}
+                  />
+                </div>
+                <div>
+                  <GuestsInput
+                    label="Guests"
+                    placeholder="Add guests"
+                    readOnly
+                    value={guests}
+                    onFocus={handleGuestsFocus}
+                  />
+                </div>
+                <SearchButton onClick={handleSearchButton} />
+              </div>
+            </div>
+            {
+              isExpanded &&
+              isLocationsVisible &&
+              <Locations data={locationsList} query={debounceLocation} onLocationChanged={handleLocationSelected} />
+            }
+            {
+              isExpanded &&
+              isGuestsVisible &&
+              <GuestsControls data={guests} onGuestsChange={(val) => setGuests(val)} />
+            }
+            <SearchButton className="search-btn--expanded mt-179" onClick={handleSearchButton} />
+          </div>
+        </div>
+      );
+    }
+
+    function Locations({data, query, onLocationChanged}) {
+      const maxItemsToDisplay = 5;
+
+      function handleClick(e) {
+        if (typeof onLocationChanged === 'function') {
+          onLocationChanged(e.target.textContent);
+        }
+      }
+
+      return (
+        <ul className="locations">
+          {
+            Object.keys(data)
+              .map((country) => {
+                const cities = Array.from(data[country]);
+                const countryLowerCased = country.toLowerCase();
+                const queryLowerCased = query.toLowerCase();
+                const includesCountry = 
+                  countryLowerCased.includes(queryLowerCased) || 
+                  queryLowerCased.includes(countryLowerCased);
+
+                return cities.sort()
+                  .map((city) => {
+                    const cityLowerCased = city.toLowerCase();
+                    const key = `${cityLowerCased}${countryLowerCased}`;
+                    const includesCity = 
+                      cityLowerCased.includes(queryLowerCased) ||
+                      queryLowerCased.includes(cityLowerCased);
+
+                    return (includesCity || includesCountry) ?
+                      <li key={key} onClick={handleClick}>{`${city}, ${country}`}</li> :
+                      undefined;
+                  })
+                  .filter((li) => li)
+                  .slice(0, maxItemsToDisplay);
+              })
+              .flat()
+          }
+        </ul>
+      );
+    }
+
+    function GuestsControls({data, onGuestsChange}) {
+      const {adults, children} = data;
+
+      return (
+        <div className="guests flex-column gap-52">
+          <div className="flex-column gap-12">
+            <div>
+              <div>Adults</div>
+              <div className="muted">Ages 13 or above</div>
+            </div>
+            <Counter value={adults} onCounterChange={(val) => onGuestsChange({adults: val, children})} />
+          </div>
+          <div className="flex-column gap-12">
+            <div>
+              <div>Children</div>
+              <div className="muted">Ages 2-12</div>
+            </div>
+            <Counter value={children} onCounterChange={(val) => onGuestsChange({adults, children: val})} />
+          </div>
+        </div>
+      );
+    }
+
+    function Counter({value, onCounterChange}) {
+      function subtract() {
+        onCounterChange(value > 0 ? value - 1 : 0)
+      }
+
+      function add() {
+        onCounterChange(value + 1);
+      }
+
+      return (
+        <div className="flex gap-15">
+          <button className="counter-btn" onClick={subtract}>-</button>
+          <div>{value}</div>
+          <button className="counter-btn" onClick={add}>+</button>
+        </div>
+      );
+    }
+
+    function InputText(props) {
+      return (
+        <div className="input-wrapper">
+          {props.label && <label>{props.label}</label>}
+          <input type="text" {...props} />
+        </div>
+      );
+    }
+
+    function GuestsInput(props) {
+      const sum = Number(props.value.adults) + Number(props.value.children);
+      const value = sum === 0 ? '' : sum;
+
+      return (
+        <InputText {...props} value={value} />
+      )
+    }
+
+    function SearchButton({className = '', onClick}) {
+      return (
+        <div className={`search-box__btn__wrapper${className && ' ' + className}`}>
+          <button className="search-box__btn" onClick={onClick}>
+            <span className="material-icons">search</span>
+            <div className="search-box__btn__label">Search</div>
+          </button>
+        </div>
+      );
+    }
+
+    function StaysList({filter, onLoading, onStaysCountChanged}) {
+      const [isLoading, setLoading] = React.useState(true);
+
+      const lowerCasedQuery = filter.query.toLowerCase();
+      const staysList = stays
+        .filter((stay) => {
+          const lowerCasedCountry = stay.country.toLowerCase();
+          const lowerCasedCity = stay.city.toLowerCase();
+
+          const isFilterEmpty = filter.query.trim() === '' && filter.meta.guests === 0; 
+          const satisfiesQuery = lowerCasedQuery.includes(lowerCasedCountry) &&
+            lowerCasedQuery.includes(lowerCasedCity);
+          const hasEnoughSpace = stay.maxGuests >= filter.meta.guests;
+
+          return isFilterEmpty ? true :
+            satisfiesQuery && hasEnoughSpace ? true : false;
+        })
+        .map(({id, photo, superHost, type, beds, rating, title}, i) => 
+          <div className="stay" key={id} style={{'--delay': `${150 * i}ms`}}>
+            <div className="stay__photo-wrapper">
+              <img className="stay__photo" src={photo} />
+            </div>
+            <div className="stay__meta">
+              <div className="flex y-center gap-11">
+                {superHost && <div className="stay__super-host"></div>}
+                <div className="stay__type">{type}{beds && ` . ${beds} ${beds === 1 ? 'bed' : 'beds'}`}</div>
+              </div>
+              <div className="flex y-center gap-3">
+                <div className="stay__rating-star">★</div>
+                <div>{rating}</div>
+              </div>
+            </div>
+            <div className="stay__title">{title}</div>
+          </div>  
+        );
+
+      React.useEffect(() => {
+        if (isLoading) {
+          setTimeout(() => {
+            onStaysCountChanged(staysList.length);
+            setLoading(false);
+          }, 2000);
+        }
+
+        if (typeof onLoading === 'function') onLoading(isLoading);
+      }, [isLoading]);
+
+      React.useEffect(() => {
+        setLoading(true);
+      }, [filter]);
+
+      return (
+        <>
+          {
+            isLoading ?
+              <div className="loading-wrapper"><div className="loading"></div></div> :
+              staysList.length === 0 ?
+                <h3 style={{'textAlign': 'center'}}>[ No stay satisfies your current filter ]</h3> :
+                <div className="stays">{staysList}</div>
+          }
+        </>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('react-root'));
+    root.render(<MyApp />);
+  </script>
+</body>
+</html>
