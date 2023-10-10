@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windbnb</title>
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="react-root"></div>
+  <div class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</div>
+
+  <script type="text/babel">
+    function MyApp() {
+      const [activeTab, setActiveTab] = React.useState(0);
+      const [tasks, setTasks] = React.useState([
+        {id: 0, text: 'Do coding challenges'},
+        {id: 1, text: 'Do coding challenges'},
+        {id: 2, text: 'Do coding challenges', completed: true},
+      ]);
+      const [taskInput, setTaskInput] = React.useState('');
+
+      const tabs = [
+        'All',
+        'Active',
+        'Completed',
+      ];
+
+      function addTask(e) {
+        e.preventDefault();
+
+        tasks.push({
+          id: Math.random().toString(16).slice(1),
+          text: taskInput,
+          completed: activeTab === 1 ? true : false,
+        });
+        setTasks([...tasks]);
+
+        setTaskInput('');
+      }
+
+      function deleteTask(e, id) {
+        e.stopPropagation();
+
+        setTasks(
+          tasks.filter((task) => task.id === id ? false : true)
+        )
+      }
+
+      function deleteAll() {
+        setTasks([]);
+      }
+
+      function handleTaskClick(id) {
+        setTasks(
+          tasks.map((task) => {
+            if (task.id === id) task.completed = !task.completed;
+            return task;
+          })
+        );
+      }
+
+      return (
+        <div className="todo">
+          <h1>#todo</h1>
+          <div className="tabs">
+            {
+              tabs.map((tab, index) => {
+                return (
+                  <span
+                    className={activeTab === index ? 'active' : ''}
+                    key={index}
+                    onClick={() => setActiveTab(index)}
+                  >
+                    {tab}
+                  </span>
+                );
+              })
+            }
+          </div>
+          {
+            activeTab !== 2 &&
+            <form className="flex gap-25 mb-32" onSubmit={addTask}>
+              <input type="text" placeholder="add details" value={taskInput} onChange={(e) => setTaskInput(e.target.value)} />
+              <button onClick={addTask}>Add</button>
+            </form>
+          }
+          <ul className="tasks">
+            {
+              tasks
+                .filter((task) => {
+                  return activeTab === 0 ? true :
+                    task.completed ? true : false;
+                })
+                .map(({id, text, completed}) => {
+                  return (
+                    <li 
+                      key={id}
+                      className={`task${completed ? ' completed' : ''}`}
+                      onClick={() => handleTaskClick(id)}
+                    >
+                      <div className="flex y-center">
+                        <span className="task__icon material-icons">
+                          {completed ? 'check_box' : 'check_box_outline_blank'}
+                        </span>
+                        <span className="task__text">{text}</span>
+                      </div>
+                      {
+                        activeTab === 2 &&
+                        <span
+                          className="task__delete material-icons"
+                          onClick={(e) => deleteTask(e, id)}
+                        >
+                          delete
+                        </span>
+                      }
+                    </li>
+                  );
+                })
+            }
+          </ul>
+          {
+            activeTab === 2 &&
+            <div className="flex x-end">
+              <button className="btn--delete mt-32" onClick={deleteAll}>
+                <span className="material-icons">delete</span>
+                <span>delete all</span>
+              </button>
+            </div>
+          }
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('react-root'));
+    root.render(<MyApp />);
+  </script>
+</body>
+</html>
