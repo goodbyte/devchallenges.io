@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random quote generator</title>
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="react-root"></div>
+
+  <script type="text/babel">
+    function MyApp() {
+      const [isLoading, setLoading] = React.useState(false);
+      const [hasError, setError] = React.useState(false);
+      const [quotes, setQuotes] = React.useState([
+        {
+          quoteText: 'The first rule of any technology used in a business is that automation applied to an efficient operation will magnify the efficiency. The second is that automation applied to an inefficient operation will magnify the inefficiency.',
+          quoteAuthor: 'Bill Gates',
+          quoteGenre: 'business',
+        },
+      ]);
+
+      const isSingleQuote = quotes.length === 1;
+      const quoteAuthor = quotes[0].quoteAuthor;
+
+      async function get(url) {
+        try {
+          setError(false);
+          setLoading(true);
+          const data = await (await fetch(url)).json();
+          return data;
+        } catch(err) {
+          displayError(err.message || err);
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      function displayError(msg) {
+        console.log(msg);
+        setError(true);
+        setQuotes([
+          {
+            quoteText: `Sometimes things don't work out, but if you're curious about why, you'll need to look at the console.`,
+            quoteAuthor: 'This app',
+            quoteGenre: '>_<'
+          },
+        ]);
+      }
+
+      async function handleRandom() {
+        const req = await get('https://quote-garden.onrender.com/api/v3/quotes/random');
+        setQuotes(req.data);
+      }
+
+      async function handleAuthor() {
+        const req = await get(`https://quote-garden.onrender.com/api/v3/quotes?author=${encodeURI(quoteAuthor)}&limit=3`);
+
+        if (req.data?.length === 0) {
+          displayError(`Doesn't seem to be any quotes from that author`)
+          return;
+        };
+
+        setQuotes(req.data);
+      }
+
+      return (
+        <>
+          <div className="flex x-end mb-48">
+            <button onClick={handleRandom}>
+              <span>random</span>
+              <span className="material-icons">autorenew</span>
+            </button>
+          </div>
+          {
+            isLoading ?
+              <div className="spinner"></div> :
+              <div className={`quote-wrapper${hasError ? ' error' : ''}`}>
+                {
+                  !isSingleQuote &&
+                  <h2>{quoteAuthor}</h2>
+                }
+                {
+                  quotes.map((quote, index) => {
+                    return (
+                      <div className="quote" key={index}>
+                        <p className="quote__text">{quote.quoteText}</p>
+                        {
+                          isSingleQuote &&
+                          <div className="quote__meta" onClick={hasError ? null : handleAuthor}>
+                            <div className="flex-column gap-8">
+                              <div className="quote__author">{quote.quoteAuthor}</div>
+                              <div className="quote__tags">{quote.quoteGenre}</div>
+                            </div>
+                            <span className="material-icons">trending_flat</span>
+                          </div>
+                        }
+                      </div>
+                    );
+                  })
+                }
+              </div>
+          }
+          <div className="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</div>
+        </>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('react-root'));
+    root.render(<MyApp />);
+  </script>
+</body>
+</html>
