@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country quiz</title>
+  <link rel="icon" href="devchallenges.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://devchallenges.io/">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="react-root"></div>
+  <audio id="correct-sound" src="correct_sound_effect.mp3"></audio>
+  <audio id="incorrect-sound" src="wrong_sound_effect.mp3"></audio>
+  <audio id="result-sound" src="success-fanfare-trumpets.mp3"></audio>
+  <div class="attribution">created by <a href="https://github.com/goodbyte">goodbyte</a> - devChallenges.io</div>
+
+  <script type="text/babel">
+    function useFetch(url) {
+      const [data, setData] = React.useState(null);
+      const [isLoading, setLoading] = React.useState(false);
+      const [error, setError] = React.useState(null);
+
+      React.useEffect(() => {
+        setLoading(true);
+        fetch(url)
+          .then((res) => res.json())
+          .then(setData)
+          .catch(setError)
+          .finally(() => {
+            setTimeout(() => setLoading(false), 1000);
+          });
+      }, []);
+
+      return { error, data, isLoading };
+    }
+
+    function MyApp() {
+      const [questions, setQuestions] = React.useState([]);
+      const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
+      const [isResultState, setResultState] = React.useState(false);
+      const [correctAnswersCount, setCorrectAnswersCount] = React.useState(0);
+      
+      const { error, data, isLoading } = useFetch('https://restcountries.com/v3.1/all?fields=name,capital,flags,region');
+
+      const numberOfQuestions = 5;
+      const numberOfAnswers = 4;
+      const currentQuestion = questions[currentQuestionIndex];
+      const isLastAnswer = currentQuestionIndex === questions.length - 1;
+
+      React.useEffect(() => {
+        if (data) loadQuestions();
+      }, [data]);
+
+      function loadQuestions() {
+        const _data = [...data];
+        let _questions = [];
+
+        for (let i = 0; i < numberOfQuestions; i++) {
+          const questionIndex = parseInt(Math.random() * _data.length);
+          const [question] = _data.splice(questionIndex, 1);
+
+          if (!question) throw new Error(`There aren't enough questions to fill the list. Try lowering the value of "numberOfQuestions" variable.`);
+
+          _questions.push(question);
+        }
+
+        _questions = _questions
+          .map(({ name, capital, region, flags }) => {
+            const isCapitalQuestion = !!Math.round(Math.random());
+            const question = isCapitalQuestion ?
+              `${capital[0] || name.common} is the capital of` :
+              'Which country does this flag belong to?';
+            const answers = [name.common];
+
+            const countriesFromTheSameRegion = data.filter((country) => {
+              return (
+                country.region === region &&
+                country.name.common !== name.common
+              );
+            });
+
+            let notEnoughFromTheSameRegion;
+
+            for (let i = 0; i < numberOfAnswers - 1; i++) {
+              const index = Math.random() * countriesFromTheSameRegion.length;
+              const [country] = countriesFromTheSameRegion.splice(index, 1);
+
+              if (!country) {
+                notEnoughFromTheSameRegion = true;
+                break;
+              }
+
+              answers.push(country.name.common);
+            }
+
+            if (notEnoughFromTheSameRegion) {
+              for (let i = answers.length; i < numberOfAnswers; i++) {
+                const index = Math.random() * _data.length;
+                const [country] = _data.splice(index, 1);
+
+                if (!country) throw new Error(`There isn't enough wrong answers to fill the questionnaire`);
+
+                answers.push(country.name.common);
+              }
+            }
+
+            // shuffle answers
+            for (let i = 0, shuffleCount = numberOfAnswers * 10; i < shuffleCount; i++) {
+              const index = parseInt(Math.random() * answers.length);
+              const [item] = answers.splice(index, 1);
+              answers.push(item);
+            }
+            // end
+
+            const correctAnswerIndex = answers.findIndex((a) => a === name.common);
+
+            return {
+              flag: isCapitalQuestion ? null : flags.png,
+              question,
+              answers,
+              correctAnswerIndex,
+            };
+          });
+
+        setQuestions(_questions);
+      }
+
+      function handleNext() {
+        if (isLastAnswer) {
+          setResultState(true);
+          document.querySelector('#result-sound')?.play();
+        } else {
+          setCurrentQuestionIndex((cur) => cur + 1);
+        }
+      }
+
+      function handleReset() {
+        loadQuestions();
+        setCurrentQuestionIndex(0);
+        setCorrectAnswersCount(0);
+        setResultState(false);
+      }
+
+      return (
+        <>
+          {
+            !!error ?
+              <h3>There was an error while loading the questions from the API</h3> :
+              isLoading ?
+                <div className="spinner"></div> :
+                <div className="quiz">
+                  <h1>COUNTRY QUIZ</h1>
+                  <div className={`quiz__content${isResultState ? ' results' : ''}`}>
+                    {
+                      isResultState ?
+                        <Result correctAnswers={correctAnswersCount} onResetButton={handleReset} /> :
+                        <Quiz
+                          question={currentQuestion}
+                          isLastAnswer={isLastAnswer}
+                          onCorrectAnswer={() => setCorrectAnswersCount((cur) => cur + 1)}
+                          onNext={handleNext}
+                        />
+                    }
+                  </div>
+                </div>
+          }
+        </>
+      );
+    }
+
+    function Result({correctAnswers, onResetButton}) {
+      return (
+        <div className="results">
+          <img src="./undraw_winners_ao2o 2.svg" alt="Results" />
+          <h2>Results</h2>
+          <div className="results__score">You got <span>{correctAnswers}</span> correct answers</div>
+          <button onClick={onResetButton}>Try again</button>
+        </div> 
+      );
+    }
+
+    function Quiz({question, isLastAnswer, onCorrectAnswer, onNext}) {
+      const [isResultState, setResultState] = React.useState(false);
+      const [selectedAnswerIndex, setSelectedAnswerIndex] = React.useState(null);
+
+      React.useEffect(() => {
+        setResultState(false);
+        setSelectedAnswerIndex(null);
+      }, [question]);
+
+      function handleClick(index) {
+        if (!isResultState) {
+          setSelectedAnswerIndex(index);
+          if (question.correctAnswerIndex == index) {
+            document.querySelector('#correct-sound')?.play();
+            onCorrectAnswer();
+          } else {
+            document.querySelector('#incorrect-sound')?.play();
+          }
+                  }
+        setResultState(true);
+      }
+
+      return (
+        <>
+          {
+            question?.flag &&
+            <img className="flag" src={question.flag} alt="Flag" />
+          }
+          <h3>{question?.question}</h3>
+          <ol className="questions">
+            {
+              question?.answers.map((answer, index) => {
+                const isCorrectAnswer = question.correctAnswerIndex === index;
+                const isSelected = selectedAnswerIndex === index;
+
+                let classes = 'question';
+
+                if (isResultState) {
+                  classes += isCorrectAnswer ? ' correct' : (isSelected ? ' selected' : '');
+                }
+
+                return (
+                  <li key={index} className={classes} onClick={() => handleClick(index)}>
+                    <div>{answer}</div>
+                  </li>
+                );
+              }
+              )
+            }
+          </ol>
+          {
+            isResultState &&
+            <div className="quiz__actions">
+              <button onClick={onNext}>{ isLastAnswer ? 'See results' : 'Next' }</button>
+            </div>
+          }
+        </>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('react-root'));
+    root.render(<MyApp />);
+  </script>
+</body>
+</html>
