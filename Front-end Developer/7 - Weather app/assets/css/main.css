@@ -1,0 +1,496 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Raleway:wght@100;400;500;600;700&display=swap');
+
+:root {
+  font-size: 6.25%;
+
+  --font-1: Raleway, sans-serif;
+  --font-2: Montserrat, sans-serif;
+
+  --color-1: #E7E7EB;
+  --color-2: #A09FB1;
+  --color-3: #FFEC65;
+  --color-4: #1E213A;
+  --color-5: #6E707A;
+  --color-6: #00000040;
+  --color-7: #100E1D;
+  --color-8: #88869D;
+  --color-9: #585676;
+  --color-10: #110E3C;
+  --color-11: #3C47E9;
+  --color-12: #616475;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: inherit;
+  border: 0;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  font: 500 16rem/1.2 var(--font-1);
+  color: var(--color-1);
+  background: var(--color-7);
+}
+
+span.btn {
+  display: grid;
+  place-content: center;
+  width: 40px;
+  height: 40px;
+  font-size: 18rem;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.flex,
+.flex-column {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex.x-end {
+  justify-content: flex-end;
+}
+
+.flex.x-space-between {
+  justify-content: space-between;
+}
+
+.flex.y-center {
+  align-items: center;
+}
+
+.flex-column.x-center {
+  align-items: center;
+}
+
+.flex.x-self-stretch {
+  align-self: stretch;
+}
+
+.align-self-end {
+  align-self: flex-end;
+}
+
+.full-size {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-4);
+}
+
+.centered {
+  display: grid;
+  place-content: center;
+}
+
+.gap-6 {
+  gap: 6px;
+}
+
+.gap-12 {
+  gap: 12px;
+}
+
+.gap-31 {
+  gap: 31px;
+}
+
+.mt-17 {
+  margin-top: 17px;
+}
+
+.mb-76 {
+  margin-bottom: 76px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 6px solid var(--color-1);
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+.btn {
+  padding: 11px 18px;
+  background: var(--color-5);
+  color: var(--color-1);
+  box-shadow: 0px 4px 4px 0px var(--color-6);
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: appear 1s forwards;
+}
+
+.drawer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 32%;
+  height: 100vh;
+  row-gap: 20px;
+  padding-top: clamp(18px, 9.5493px + 2.2535vw, 42px);
+  padding-inline: clamp(12px, 0.0282px + 3.1925vw, 46px);
+  padding-bottom: clamp(103px, 121.6620px + -4.9765vw, 50px);
+  background: var(--color-4);
+  color: var(--color-8);
+  overflow: hidden;
+}
+
+.drawer > * {
+  z-index: 1000;
+}
+
+.drawer__background {
+  position: absolute;
+  inset: 0;
+  background: url('../images/Cloud-background.png') no-repeat;
+  background-position-y: 103px;
+  background-size: 650px;
+  background-position-x: center;
+  opacity: 0.1;
+}
+
+.drawer__img {
+  margin-bottom: 40px;
+  max-width: 202px;
+}
+
+.drawer__temp {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 23px;
+  font-size: 144rem;
+  color: var(--color-1);
+}
+
+.drawer__temp .unit {
+  font-size: 48rem;
+  font-weight: 100;
+  color: var(--color-2);
+}
+
+.drawer__forecast {
+  margin-bottom: 48px;
+  font-size: 36rem;
+  font-weight: 600;
+  color: var(--color-2);
+}
+
+.drawer__today {
+  display: flex;
+  gap: 16px;
+  font-size: 18rem;
+  font-weight: 600;
+}
+
+.drawer__location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18rem;
+}
+
+.search-panel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  padding: 12px 47px;
+  background: var(--color-4);
+  transform: translateY(-100%);
+  transition: transform 200ms ease-out;
+}
+
+.search-panel.active {
+  transform: translateY(0);
+}
+
+.search-panel .close {
+  align-self: flex-end;
+  margin-bottom: 38px;
+  cursor: pointer;
+}
+
+.search-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 58px;
+}
+
+.input-search {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  column-gap: 13px;
+  padding: 12px;
+  border: 1px solid var(--color-1);
+}
+
+.input-search .material-icons {
+  color: var(--color-12);
+}
+
+.input-search ::placeholder {
+  color: var(--color-12);
+}
+
+.input-search input[type=text] {
+  width: 100%;
+  background: transparent;
+  color: var(--color-1);
+  outline: none;
+}
+
+.search-panel .btn {
+  padding: 14px 19px;
+  background: var(--color-11);
+}
+
+.search-panel ul {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+  color: var(--color-1);
+  list-style: none;
+}
+
+.search-panel li {
+  display: flex;
+  justify-content: space-between;
+  padding: 23px 12px;
+  border: 1px solid transparent;
+}
+
+.search-panel li:hover {
+  border-color: var(--color-12);
+  cursor: pointer;
+}
+
+.search-panel li:hover::after {
+  content: 'chevron_right';
+  font-family: 'Material Icons';
+  color: var(--color-12);
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: 66px;
+  padding-top: clamp(52px, 55.5211px + -0.9390vw, 42px);
+  padding-left: clamp(24px, -21.7746px + 12.2066vw, 154px);
+  padding-right: clamp(24px, -10.8592px + 9.2958vw, 123px);
+  padding-bottom: 24px;
+  width: 68%;
+  max-height: 100vh;
+  background: var(--color-7);
+  overflow-y: scroll;
+}
+
+.main span.btn {
+  background: var(--color-9);
+}
+
+.main span.btn.active,
+.main span.btn:hover {
+  background: var(--color-1);
+  color: var(--color-10);
+}
+
+.card {
+  background-color: var(--color-4);
+}
+
+.forecasts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+  gap: 26px;
+}
+
+.forecasts .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 31px;
+  padding: 18px;
+  min-height: 177px;
+}
+
+.forecasts .card__date {
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
+.forecasts .card__img {
+  width: 56px;
+  height: 62px;
+  object-fit: contain;
+}
+
+.forecasts .card__temps {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.forecasts .card__temps div {
+  white-space: nowrap;
+}
+
+.forecasts .card__temps div + div {
+  color: var(--color-2);
+}
+
+.highlights h3 {
+  margin-bottom: 32px;
+  font-size: 24rem;
+  font-weight: 700;
+}
+
+.highlights__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 26.3662px + 1.5023vw, 48px);
+}
+
+.highlights .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  place-content: center;
+  row-gap: 6px;
+  padding: 22px;
+  min-height: 204px;
+}
+
+.highlights .card__stat {
+  font-size: 64rem;
+  font-weight: 700;
+}
+
+.highlights .card__stat .unit {
+  font-size: 36rem;
+}
+
+.arrow {
+  display: grid;
+  place-content: center;
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: rotate(var(--angle));
+}
+
+.arrow::after {
+  content: 'north';
+  font-family: 'Material Icons';
+  font-weight: 700;
+  font-size: 20rem;
+}
+
+.humidity {
+  display: flex;
+  flex-direction: column;
+  width: 185px;
+  margin-top: 12px;
+}
+
+.humidity span {
+  color: var(--color-2);
+}
+
+.humidity meter {
+  width: 100%;
+}
+
+.humidity meter::-webkit-meter-bar {
+  background: var(--color-1);
+  border: none;
+}
+
+.humidity meter::-webkit-meter-optimum-value {
+  background: var(--color-3);
+}
+
+.attribution {
+  margin-top: 47px;
+  font: 500 14rem/1.2 var(--font-2);
+  text-align: center;
+  color: var(--color-2);
+}
+
+.attribution a {
+  font-weight: 700;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 540px) {
+  .highlights__cards {
+    grid-template: none;
+  }
+}
+
+@media (max-width: 880px) {
+  .drawer {
+    flex-grow: 1;
+    width: unset;
+    height: unset;
+    overflow: unset;
+  }
+
+  .search-form {
+    margin-bottom: 38px;
+  }
+
+  .search-panel {
+    position: fixed;
+    padding: 12px;
+  }
+
+  .search-panel .close {
+    margin-bottom: 24px;
+  }
+
+  .main {
+    max-height: unset;
+    overflow: unset;
+  }
+
+  .forecasts {
+    row-gap: 32px;
+    padding-inline: 30px;
+  }
+}

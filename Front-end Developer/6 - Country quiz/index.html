@@ -34,7 +34,7 @@
           .finally(() => {
             setTimeout(() => setLoading(false), 1000);
           });
-      }, []);
+      }, [url]);
 
       return { error, data, isLoading };
     }
