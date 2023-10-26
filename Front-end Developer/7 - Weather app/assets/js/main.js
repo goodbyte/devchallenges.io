@@ -1,6 +1,6 @@
 {
-  const OPENWEATHER_API_KEY = '8969a489d02f0994cf6fb5df2e3883c5';
-  const VISUALCROSSING_API_KEY = 'Y5JPXD6LUD8XE7YNUC8MVPBF9';
+  const OPENWEATHER_API_KEY = '';
+  const VISUALCROSSING_API_KEY = '';
 
   function useFetch(url) {
     const [data, setData] = React.useState(null);
