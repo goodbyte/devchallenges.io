@@ -6,10 +6,6 @@
 
 <div align="center">
   <h3>
-    <a href="https://goodbyte.github.io/devchallenges.io/Front-end%20Developer/7%20-%20Weather%20app/">
-      Demo
-    </a>
-    <span> | </span>
     <a href="https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv">
       Challenge
     </a>
@@ -27,3 +23,13 @@
 ## Features
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv) was to build an application to complete the given user stories.
+
+## How To Use
+
+Update the followings constants with your own API KEYS, and run the app on any web server. ( [VSCode Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server) for example )
+
+```js
+// ./assets/js/main.js
+const OPENWEATHER_API_KEY = '';
+const VISUALCROSSING_API_KEY = '';
+```
